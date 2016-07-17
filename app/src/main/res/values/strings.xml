@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Psychogram</string>
+    <string name="sign">Уже зарегистрированы? Войдите!</string>
+    <string name="client">Клиент</string>
+    <string name="doctor">Психолог</string>
+    <string name="registration">Зарегистрироваться как ... </string>
+    <string name="nickname">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="auto_sign">Автоматический вход</string>
+    <string name="save_in_preferences">Сохранить пользователя</string>
+    <string name="sign_in">Войти</string>
+</resources>
