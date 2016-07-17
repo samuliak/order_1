@@ -11,15 +11,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.authorization.SelectTypeActivity">
+        <activity android:name=".Activity.authornization.SelectTypeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.authorization.AuthorizationActivity" />
-        <activity android:name=".Activity.authorization.RegistrationActivity"></activity>
+        <activity android:name=".Activity.authornization.AuthorizationActivity" />
+        <activity android:name=".Activity.registration.RegistrationDoctorActivity" />
+        <activity android:name=".Activity.registration.RegistrationClientActivity" />
+        <activity android:name=".Activity.main.MainDoctorActivity"></activity>
     </application>
 
 </manifest>

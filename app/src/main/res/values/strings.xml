@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">Psychogram</string>
-    <string name="sign">Уже зарегистрированы? Войдите!</string>
+    <string name="sign">или авторизоваться</string>
     <string name="client">Клиент</string>
     <string name="doctor">Психолог</string>
-    <string name="registration">Зарегистрироваться как ... </string>
+    <string name="registration">Зарегистрироваться как … </string>
     <string name="nickname">Логин</string>
     <string name="password">Пароль</string>
     <string name="auto_sign">Автоматический вход</string>
     <string name="save_in_preferences">Сохранить пользователя</string>
     <string name="sign_in">Войти</string>
+    <string name="without_internet_access">Немає доступу до мережі!</string>
+    <string name="connecting_to_server">"Підключення до сервера … "</string>
+    <string name="password_incorrect">Неправильний пароль!</string>
+    <string name="connecting_error">Помилка підключення!</string>
+    <string name="user_not_found">Користувача не знайдено!</string>
 </resources>

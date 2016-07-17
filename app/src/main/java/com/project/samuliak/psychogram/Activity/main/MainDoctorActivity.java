@@ -1,15 +1,15 @@
-package com.project.samuliak.psychogram.Activity.authorization;
+package com.project.samuliak.psychogram.Activity.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.project.samuliak.psychogram.R;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class MainDoctorActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_main_doctor);
     }
 }

@@ -7,6 +7,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Activity.registration.RegistrationDoctorActivity">
+    tools:context="com.project.samuliak.psychogram.Activity.registration.RegistrationClientActivity">
 
 </RelativeLayout>
