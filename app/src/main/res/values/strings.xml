@@ -4,14 +4,32 @@
     <string name="client">Клиент</string>
     <string name="doctor">Психолог</string>
     <string name="registration">Зарегистрироваться как … </string>
+    <string name="registr">Зарегистрироватся</string>
     <string name="nickname">Логин</string>
     <string name="password">Пароль</string>
     <string name="auto_sign">Автоматический вход</string>
     <string name="save_in_preferences">Сохранить пользователя</string>
     <string name="sign_in">Войти</string>
-    <string name="without_internet_access">Немає доступу до мережі!</string>
-    <string name="connecting_to_server">"Підключення до сервера … "</string>
-    <string name="password_incorrect">Неправильний пароль!</string>
-    <string name="connecting_error">Помилка підключення!</string>
-    <string name="user_not_found">Користувача не знайдено!</string>
+    <string name="without_internet_access">Нет доступа к сети!</string>
+    <string name="connecting_to_server">"Подключение к серверу … "</string>
+    <string name="password_incorrect">Неверный пароль!</string>
+    <string name="connecting_error">Ошибка подключение!</string>
+    <string name="user_not_found">Пользователя не найдено!</string>
+    <string name="registration_was_succesful">Регистрация прошла успешно!</string>
+
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="country">Страна</string>
+    <string name="city">Город</string>
+    <string name="interest">Интересы</string>
+    <string name="place_of_work">Место работы</string>
+    <string name="university">Университет</string>
+    <string name="specialization">Специализация</string>
+    <string name="competences">Компетенции</string>
+    <string name="direction_of_work">Направление работы</string>
+    <string name="age">Возвраст</string>
+
+    <string name="fill_all_fields">Заполните поля</string>
+    <string name="fill_the_field">Заполните поле!</string>
+    <string name="unpossible_registred">Ошибка при регистрации!</string>
 </resources>

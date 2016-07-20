@@ -55,8 +55,10 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            loginTv.setText(bundle.getString("login"));
-            passwordTv.setText(bundle.getString("password"));
+            Psychogolist doctor = bundle.getParcelable(Psychogolist.class.getCanonicalName());
+            assert doctor != null;
+            loginTv.setText(doctor.getLogin());
+            passwordTv.setText(doctor.getPassword());
         }else {
             savedUser();
         }
@@ -151,7 +153,7 @@ public class AuthorizationActivity extends AppCompatActivity {
 
     }
 
-    // записываем даные доктора в SharedPreferences если стоить разрешение
+    // записываем данные доктора в SharedPreferences если стоить разрешение
     private void setSharedPreferencesAndStartListActivity(){
         SharedPreferences.Editor editor = mSettings.edit();
         if(saveInfo.isChecked()) {

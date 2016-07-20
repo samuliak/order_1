@@ -9,11 +9,11 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface PsychogolistAPI {
-    // авторизація
+    // авторизация
     @GET("psychologist/login{login}")
     Call<Psychogolist> getDoctorByName(@Path("login") String login);
 
-    // регістрація
+    // реегистрация
     @POST("psychologist/save")
-    Call<Void> createPsychogolist(@Body Psychogolist user);
+    Call<Void> createDoctor(@Body Psychogolist doctor);
 }
