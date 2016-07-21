@@ -21,7 +21,8 @@
         <activity android:name=".Activity.authornization.AuthorizationActivity" />
         <activity android:name=".Activity.registration.RegistrationDoctorActivity" />
         <activity android:name=".Activity.registration.RegistrationClientActivity" />
-        <activity android:name=".Activity.main.MainDoctorActivity"></activity>
+        <activity android:name=".Activity.main.MainDoctorActivity" />
+        <activity android:name=".Activity.main.MainClientActivity"></activity>
     </application>
 
 </manifest>

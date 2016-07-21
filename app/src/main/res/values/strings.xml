@@ -16,6 +16,7 @@
     <string name="connecting_error">Ошибка подключение!</string>
     <string name="user_not_found">Пользователя не найдено!</string>
     <string name="registration_was_succesful">Регистрация прошла успешно!</string>
+    <string name="login_is_busy">Логин занят!</string>
 
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>

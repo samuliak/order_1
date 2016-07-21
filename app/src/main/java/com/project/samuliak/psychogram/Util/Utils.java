@@ -31,6 +31,18 @@ public class Utils {
         tv13.setText("");
     }
 
+    public static void clearClientFields(TextView tv1, TextView tv2, TextView tv3, TextView tv4,
+                                         TextView tv5, TextView tv6, TextView tv7, TextView tv8) {
+        tv1.setText("");
+        tv2.setText("");
+        tv3.setText("");
+        tv4.setText("");
+        tv5.setText("");
+        tv6.setText("");
+        tv7.setText("");
+        tv8.setText("");
+    }
+
     //////// Очищение подсказок
     public static void clearFieldHints(TextInputLayout log, TextInputLayout pas) {
         log.setError(null);
@@ -45,6 +57,14 @@ public class Utils {
         tv3.setError(null);
         tv4.setError(null);
         tv5.setError(null);
+    }
+
+    public static void clearClientFieldHints(TextInputLayout tv1, TextInputLayout tv2,
+                                             TextInputLayout tv3, TextInputLayout tv4) {
+        tv1.setError(null);
+        tv2.setError(null);
+        tv3.setError(null);
+        tv4.setError(null);
     }
 
     /////// Проверка на наявность интернета

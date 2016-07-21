@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.project.samuliak.psychogram.API.ClientAPI;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Activity.authornization.AuthorizationActivity;
+import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychogolist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Constants;
@@ -141,6 +143,7 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         PsychogolistAPI service = client.create(PsychogolistAPI.class);
+        ClientAPI proverkaService = client.create(ClientAPI.class);
 
         final Psychogolist doctor = new Psychogolist(login, name, surname, password, age,
                 country, city, interest, place_of_work, university, specialization,
@@ -149,34 +152,58 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
 //            user.setImage(Utils.drawableToBitmap(circleImageView.getBackground()));
 //        else user.setImage(Utils
 //                .drawableToBitmap(getResources().getDrawable(R.drawable.default_avatar)));
-        final Call<Void> str = service.createDoctor(doctor);
-        str.enqueue(new Callback<Void>() {
+        final Call<Void> str = service.saveDoctor(doctor);
+        final Call<Client> proverka = proverkaService.getClientByLogin(doctor.getLogin());
+
+        proverka.enqueue(new Callback<Client>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                progressDialog.hide();
-                progressDialog.dismiss();
-                if (response.isSuccessful()) {
-                    Toast.makeText(getBaseContext(), R.string.registration_was_succesful,
-                            Toast.LENGTH_LONG).show();
-                    clearUI();
-                    Intent i = new Intent(getBaseContext(), AuthorizationActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable(Psychogolist.class.getCanonicalName(), doctor);
-                    i.putExtras(bundle);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(getBaseContext(), R.string.unpossible_registred, Toast.LENGTH_LONG).show();
-                    loginRegIL.setError("Логин занят! ");
+            public void onResponse(Call<Client> call, Response<Client> response) {
+                if (response.isSuccessful())
+                    loginIsBusy();
+                else {
+                    str.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            progressDialog.hide();
+                            progressDialog.dismiss();
+                            if (response.isSuccessful()) {
+                                Toast.makeText(getBaseContext(), R.string.registration_was_succesful,
+                                        Toast.LENGTH_LONG).show();
+                                clearUI();
+                                Intent i = new Intent(getBaseContext(), AuthorizationActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putParcelable(Psychogolist.class.getCanonicalName(), doctor);
+                                i.putExtras(bundle);
+                                i.putExtra("TYPE", "Doctor");
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(getBaseContext(), R.string.unpossible_registred, Toast.LENGTH_LONG).show();
+                                loginRegIL.setError("Логин занят! ");
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(getBaseContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
+                            progressDialog.hide();
+                            progressDialog.dismiss();
+                            clearUI();
+                        }
+                    });
                 }
             }
+
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getBaseContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
-                progressDialog.hide();
-                progressDialog.dismiss();
-                clearUI();
+            public void onFailure(Call<Client> call, Throwable t) {
+            }
+
+            private void loginIsBusy() {
+                Toast.makeText(getBaseContext(), R.string.unpossible_registred, Toast.LENGTH_LONG).show();
+                loginRegIL.setError("Логин занят! ");
+                loginRegIL.setError(getResources().getString(R.string.login_is_busy));
+                YoYo.with(Techniques.Shake).duration(700).playOn(loginRegIL);
             }
         });
+
     }
 
     private void clearUI() {

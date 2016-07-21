@@ -15,8 +15,11 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.project.samuliak.psychogram.API.ClientAPI;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
+import com.project.samuliak.psychogram.Activity.main.MainClientActivity;
 import com.project.samuliak.psychogram.Activity.main.MainDoctorActivity;
+import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychogolist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Constants;
@@ -31,6 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AuthorizationActivity extends AppCompatActivity {
 
     private Psychogolist doctor;
+    private Client clientBody;
     private TextView loginTv, passwordTv;
     private TextInputLayout loginInputLayout, passwordInputLayout;
     private CheckBox autoSign, saveInfo;
@@ -44,6 +48,8 @@ public class AuthorizationActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        doctor = null;
+        clientBody = null;
         mSettings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         loginInputLayout = (TextInputLayout) findViewById(R.id.loginInputLayout);
         passwordInputLayout = (TextInputLayout) findViewById(R.id.passwordInputLayout);
@@ -55,10 +61,23 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            Psychogolist doctor = bundle.getParcelable(Psychogolist.class.getCanonicalName());
-            assert doctor != null;
-            loginTv.setText(doctor.getLogin());
-            passwordTv.setText(doctor.getPassword());
+            Psychogolist doctor;
+            Client client;
+            String type = bundle.getString("TYPE");
+            assert type != null;
+            if (type.equals("Doctor")) {
+                doctor = bundle.getParcelable(Psychogolist.class.getCanonicalName());
+                assert doctor != null;
+                loginTv.setText(doctor.getLogin());
+                passwordTv.setText(doctor.getPassword());
+            }
+            else {
+                client = bundle.getParcelable(Client.class.getCanonicalName());
+                assert client != null;
+                loginTv.setText(client.getLogin());
+                passwordTv.setText(client.getPassword());
+            }
+
         }else {
             savedUser();
         }
@@ -115,15 +134,17 @@ public class AuthorizationActivity extends AppCompatActivity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
-        Retrofit client = new Retrofit.Builder()
+        final Retrofit client = new Retrofit.Builder()
                 .baseUrl(Constants.HOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        PsychogolistAPI service = client.create(PsychogolistAPI.class);
-        Call<Psychogolist> call = service.getDoctorByName(login);
+        PsychogolistAPI serviceDoctor = client.create(PsychogolistAPI.class);
+        ClientAPI serviceClient = client.create(ClientAPI.class);
+        final Call<Client> callClient = serviceClient.getClientByLogin(login);
+        Call<Psychogolist> callDoctor = serviceDoctor.getDoctorByName(login);
 
-        call.enqueue(new Callback<Psychogolist>() {
+        callDoctor.enqueue(new Callback<Psychogolist>() {
             @Override
             public void onResponse(Call<Psychogolist> call, Response<Psychogolist> response) {
                 if (response.isSuccessful()) {
@@ -135,8 +156,27 @@ public class AuthorizationActivity extends AppCompatActivity {
                         YoYo.with(Techniques.Shake).duration(700).playOn(passwordTv);
                     }
                 } else{
-                    Toast.makeText(getBaseContext(), R.string.user_not_found, Toast.LENGTH_LONG).show();
-                    Utils.clearFields(loginTv, passwordTv);
+                    callClient.enqueue(new Callback<Client>() {
+                        @Override
+                        public void onResponse(Call<Client> call, Response<Client> response) {
+                            if (response.isSuccessful()){
+                                clientBody = response.body();
+                                if (clientBody.getPassword().equals(password)){
+                                    setSharedPreferencesAndStartListActivity();
+                                } else{
+                                    Toast.makeText(getBaseContext(), R.string.password_incorrect, Toast.LENGTH_LONG).show();
+                                    YoYo.with(Techniques.Shake).duration(700).playOn(passwordTv);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Client> call, Throwable t) {
+                            Toast.makeText(getBaseContext(), R.string.user_not_found, Toast.LENGTH_LONG).show();
+                            Utils.clearFields(loginTv, passwordTv);
+                        }
+                    });
+
                 }
                 progressDialog.hide();
                 progressDialog.dismiss();
@@ -167,10 +207,14 @@ public class AuthorizationActivity extends AppCompatActivity {
         }else{
             editor.clear();
         }
-
-        Intent i = new Intent(getBaseContext(), MainDoctorActivity.class);
-        i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
-
+        Intent i;
+        if (doctor == null && clientBody != null){
+            i = new Intent(getBaseContext(), MainClientActivity.class);
+            i.putExtra(Client.class.getCanonicalName(), clientBody);
+        } else {
+            i = new Intent(getBaseContext(), MainDoctorActivity.class);
+            i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+        }
         startActivity(i);
     }
 }

@@ -13,7 +13,7 @@ public interface PsychogolistAPI {
     @GET("psychologist/login{login}")
     Call<Psychogolist> getDoctorByName(@Path("login") String login);
 
-    // реегистрация
+    // регистрация
     @POST("psychologist/save")
-    Call<Void> createDoctor(@Body Psychogolist doctor);
+    Call<Void> saveDoctor(@Body Psychogolist doctor);
 }
