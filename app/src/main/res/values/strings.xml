@@ -33,4 +33,14 @@
     <string name="fill_all_fields">Заполните поля</string>
     <string name="fill_the_field">Заполните поле!</string>
     <string name="unpossible_registred">Ошибка при регистрации!</string>
+
+    <string name="my_clients">Мои клиенты</string>
+    <string name="cabinet">Кабинет</string>
+    <string name="clients_history">История клиентов</string>
+    <string name="psychodiagnostika">Психодиагностика</string>
+    <string name="online_help">Онлайн поддержка</string>
+    <string name="information_about_me">Информация обо мне</string>
+    <string name="first_help">Аптечка первой помощи</string>
+    <string name="friends_from_work">Друзья проф.сообщества</string>
+    <string name="settings">Настройки</string>
 </resources>
