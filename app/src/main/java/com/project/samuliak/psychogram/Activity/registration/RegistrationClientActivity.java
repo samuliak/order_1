@@ -176,7 +176,6 @@ public class RegistrationClientActivity extends AppCompatActivity {
                 progressDialog.hide();
                 progressDialog.dismiss();
                 Toast.makeText(getBaseContext(), R.string.unpossible_registred, Toast.LENGTH_LONG).show();
-                loginRegIL.setError("Логин занят! ");
                 loginRegIL.setError(getResources().getString(R.string.login_is_busy));
                 YoYo.with(Techniques.Shake).duration(700).playOn(loginRegIL);
             }
