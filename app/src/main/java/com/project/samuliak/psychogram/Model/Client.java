@@ -20,9 +20,6 @@ public class Client implements Parcelable {
     @SerializedName("password")
     @Expose
     public String password;
-    @SerializedName("doctor")
-    @Expose
-    public Object doctor;
     @SerializedName("age")
     @Expose
     public Integer age;
@@ -50,7 +47,6 @@ public class Client implements Parcelable {
         this.country = country;
         this.city = city;
         this.interest = interest;
-        this.doctor = null;
     }
 
     protected Client(Parcel in) {
@@ -105,14 +101,6 @@ public class Client implements Parcelable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Object getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Object doctor) {
-        this.doctor = doctor;
     }
 
     public Integer getAge() {

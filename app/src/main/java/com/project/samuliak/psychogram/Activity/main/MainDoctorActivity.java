@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.project.samuliak.psychogram.Activity.menu.doctor_menu.MyClients;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
 import com.project.samuliak.psychogram.Listener.RecyclerClickListener;
 import com.project.samuliak.psychogram.Model.Psychogolist;
@@ -23,6 +24,10 @@ public class MainDoctorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_doctor);
+        initActivity();
+    }
+
+    private void initActivity() {
         doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());
         initUI();
         MenuAdapter adapter = new MenuAdapter(items);
@@ -35,6 +40,9 @@ public class MainDoctorActivity extends AppCompatActivity {
                         Intent i;
                         switch (position){
                             case 0:
+                                i = new Intent(view.getContext(), MyClients.class);
+                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                startActivity(i);
                                 break;
                             case 1:
                                 break;

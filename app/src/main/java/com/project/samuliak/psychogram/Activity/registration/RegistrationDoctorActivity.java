@@ -158,7 +158,6 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
         proverka.enqueue(new Callback<Client>() {
             @Override
             public void onResponse(Call<Client> call, Response<Client> response) {
-                progressDialog.hide();
                 progressDialog.dismiss();
                 Toast.makeText(getBaseContext(), R.string.unpossible_registred, Toast.LENGTH_LONG).show();
                 loginRegIL.setError(getResources().getString(R.string.login_is_busy));
@@ -170,7 +169,6 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
                 str.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        progressDialog.hide();
                         progressDialog.dismiss();
                         if (response.isSuccessful()) {
                             Toast.makeText(getBaseContext(), R.string.registration_was_succesful,
@@ -190,7 +188,6 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         Toast.makeText(getBaseContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
-                        progressDialog.hide();
                         progressDialog.dismiss();
                         clearUI();
                     }

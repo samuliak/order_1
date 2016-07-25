@@ -7,6 +7,5 @@ public class Constants {
     public static String APP_PREFERENCES_PASSWORD = "PASSWORD";
     public static String IS_AUTO_SIGN = "AUTO_SIGN";
 
-
     public static String HOST = "http://10.0.3.2:8080/";
 }

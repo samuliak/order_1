@@ -10,11 +10,21 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ClientAPI {
-    // авторизация
+    // авторизация через логин
     @GET("client/login{login}")
     Call<Client> getClientByLogin(@Path("login") String login);
+
+    // авторизация через ИД
+    @GET("client/id{id}")
+    Call<Client> getClientById(@Path("id") int id);
 
     // регистрация
     @POST("client/save")
     Call<Void> saveClient(@Body Client client);
+
+    // назначить врача клиенту
+    @GET("client/psadd/client{id}/login{login}")
+    Call<Void> setPsychologistClient(@Path("id") int id, @Path("login") String login);
+
+
 }

@@ -43,4 +43,6 @@
     <string name="first_help">Аптечка первой помощи</string>
     <string name="friends_from_work">Друзья проф.сообщества</string>
     <string name="settings">Настройки</string>
+    <string name="current_clients">Текущие клиенты</string>
+    <string name="potencial_clients">Потенциальные клиенты</string>
 </resources>
