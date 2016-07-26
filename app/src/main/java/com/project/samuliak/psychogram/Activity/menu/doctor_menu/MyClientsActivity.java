@@ -1,21 +1,16 @@
 package com.project.samuliak.psychogram.Activity.menu.doctor_menu;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.project.samuliak.psychogram.API.ClientAPI;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Adapter.MyClientsAdapter;
-import com.project.samuliak.psychogram.Listener.RecyclerClickListener;
 import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychogolist;
 import com.project.samuliak.psychogram.R;
@@ -29,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MyClients extends AppCompatActivity {
+public class MyClientsActivity extends AppCompatActivity {
 
     private Psychogolist doctor;
     private RecyclerView list_clients;
@@ -81,14 +76,14 @@ public class MyClients extends AppCompatActivity {
 
 
     private void getMayClients() {
-        final Call<List<Client>> listCall = service.getPotencialClients(doctor.getLogin());
+        Call<List<Client>> listMayCall = service.getPotencialClients(doctor.getLogin());
         initProgressDialog();
-        listCall.enqueue(new Callback<List<Client>>() {
+        listMayCall.enqueue(new Callback<List<Client>>() {
             @Override
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
                 if (response.isSuccessful()){
                     MyClientsAdapter adapter = new MyClientsAdapter(getBaseContext(), response.body(),
-                            false);
+                            true);
                     list_clients.setAdapter(adapter);
                     list_clients.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 }
@@ -104,15 +99,14 @@ public class MyClients extends AppCompatActivity {
     }
 
     private void getCurrentClients() {
-        final Call<List<Client>> listCall = service.getClientsByDoctorLogin(doctor.getLogin());
+        Call<List<Client>> listCurrentCall = service.getClientsByDoctorLogin(doctor.getLogin());
         initProgressDialog();
-        listCall.enqueue(new Callback<List<Client>>() {
+        listCurrentCall.enqueue(new Callback<List<Client>>() {
             @Override
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
                 if (response.isSuccessful()){
-                    Log.e("samuliak", "current list > " + response.body().size());
                     MyClientsAdapter adapter = new MyClientsAdapter(getBaseContext(), response.body(),
-                            true);
+                            false);
                     list_clients.setAdapter(adapter);
                     list_clients.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 }

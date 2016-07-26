@@ -28,11 +28,25 @@ public interface PsychogolistAPI {
     @POST("psychologist/potencial{login}")
     Call<List<Client>> getPotencialClients(@Path("login") String psLogin);
 
+    // список прошлых клиентов
+    @POST("psychologist/exclient{login}")
+    Call<List<Client>> getExClients(@Path("login") String login);
+
     // добавить клиента
     @POST("client/psadd/client{log}/login{login}")
     Call<Void> addClient(@Path("log") String log, @Path("login") String login);
 
+    // подтвердить клиента
+    @POST("psychologist/delete/{login}")
+    Call<Void> deleteClient(@Path("login") String login);
+
+    // удалить клиента
+    @POST("psychologist/agree/{login}")
+    Call<Void> agreeClient(@Path("login") String login);
+
     // удалить клиента
     @POST("client/psremove{login}")
     Call<Void> removeClient(@Path("login") String login);
+
+
 }

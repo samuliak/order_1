@@ -25,7 +25,8 @@
         <activity android:name=".Activity.registration.RegistrationClientActivity" />
         <activity android:name=".Activity.main.MainDoctorActivity" />
         <activity android:name=".Activity.main.MainClientActivity" />
-        <activity android:name=".Activity.menu.doctor_menu.MyClients"></activity>
+        <activity android:name=".Activity.menu.doctor_menu.MyClientsActivity" />
+        <activity android:name=".Activity.menu.doctor_menu.ExClientsActivity"></activity>
     </application>
 
 </manifest>

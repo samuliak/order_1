@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
-import com.project.samuliak.psychogram.Activity.menu.doctor_menu.MyClients;
+import com.project.samuliak.psychogram.Activity.menu.doctor_menu.ExClientsActivity;
+import com.project.samuliak.psychogram.Activity.menu.doctor_menu.MyClientsActivity;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
 import com.project.samuliak.psychogram.Listener.RecyclerClickListener;
 import com.project.samuliak.psychogram.Model.Psychogolist;
@@ -40,13 +40,16 @@ public class MainDoctorActivity extends AppCompatActivity {
                         Intent i;
                         switch (position){
                             case 0:
-                                i = new Intent(view.getContext(), MyClients.class);
+                                i = new Intent(view.getContext(), MyClientsActivity.class);
                                 i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
                             case 1:
                                 break;
                             case 2:
+                                i = new Intent(view.getContext(), ExClientsActivity.class);
+                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                startActivity(i);
                                 break;
                             case 3:
                                 break;

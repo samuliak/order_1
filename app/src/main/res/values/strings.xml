@@ -43,6 +43,13 @@
     <string name="first_help">Аптечка первой помощи</string>
     <string name="friends_from_work">Друзья проф.сообщества</string>
     <string name="settings">Настройки</string>
+
     <string name="current_clients">Текущие клиенты</string>
     <string name="potencial_clients">Потенциальные клиенты</string>
+
+    <string name="profile">Профиль</string>
+    <string name="delete">Удалить</string>
+    <string name="agree">Подтвердить</string>
+    <string name="agreed">Подтвердженно</string>
+    <string name="deleted">Удалено</string>
 </resources>
