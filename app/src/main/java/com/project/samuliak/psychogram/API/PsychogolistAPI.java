@@ -2,11 +2,13 @@ package com.project.samuliak.psychogram.API;
 
 import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Tab;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -48,5 +50,27 @@ public interface PsychogolistAPI {
     @POST("client/psremove{login}")
     Call<Void> removeClient(@Path("login") String login);
 
+    /*
+    Работа с табами
+     */
 
+    // список табов по доктору
+    @POST("tab/doctor{name}")
+    Call<List<Tab>> getAllTabsByDoctor(@Path("name") String psLogin);
+
+    // список табов по клиенту
+    @GET("tab/client{login}")
+    Call<List<Tab>> getAllTabsByClient(@Path("login") String login);
+
+    // добавить таб
+    @POST("tab/save")
+    Call<Void> addTab(@Body Tab tab);
+
+    // удалить таб
+    @DELETE("tab/{id}")
+    Call<Void> removeTab(@Path("id") int id);
+
+    /*
+    Работа с смс
+     */
 }

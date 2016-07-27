@@ -7,8 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.project.samuliak.psychogram.Activity.menu.doctor_menu.ExClientsActivity;
-import com.project.samuliak.psychogram.Activity.menu.doctor_menu.MyClientsActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.common_items.CommunicationActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.ExClientsActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.MyClientsActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileDoctorActivity;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
 import com.project.samuliak.psychogram.Listener.RecyclerClickListener;
 import com.project.samuliak.psychogram.Model.Psychogolist;
@@ -54,8 +56,15 @@ public class MainDoctorActivity extends AppCompatActivity {
                             case 3:
                                 break;
                             case 4:
+                                i = new Intent(view.getContext(), CommunicationActivity.class);
+                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                startActivity(i);
                                 break;
                             case 5:
+                                i = new Intent(view.getContext(), ProfileDoctorActivity.class);
+                                i.putExtra("IS_CLIENT_LOOK", false);
+                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                startActivity(i);
                                 break;
                             case 6:
                                 break;

@@ -1,4 +1,4 @@
-package com.project.samuliak.psychogram.Activity.authornization;
+package com.project.samuliak.psychogram.Activity.main.authornization;
 
 import android.app.ProgressDialog;
 import android.content.Context;

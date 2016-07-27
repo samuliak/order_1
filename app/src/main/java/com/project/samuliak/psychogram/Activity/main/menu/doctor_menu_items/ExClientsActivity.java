@@ -1,4 +1,4 @@
-package com.project.samuliak.psychogram.Activity.menu.doctor_menu;
+package com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

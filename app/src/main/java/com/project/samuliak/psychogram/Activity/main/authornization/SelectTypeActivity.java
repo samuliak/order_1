@@ -1,4 +1,4 @@
-package com.project.samuliak.psychogram.Activity.authornization;
+package com.project.samuliak.psychogram.Activity.main.authornization;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.project.samuliak.psychogram.Activity.registration.RegistrationClientActivity;
-import com.project.samuliak.psychogram.Activity.registration.RegistrationDoctorActivity;
+import com.project.samuliak.psychogram.Activity.main.registration.RegistrationClientActivity;
+import com.project.samuliak.psychogram.Activity.main.registration.RegistrationDoctorActivity;
 import com.project.samuliak.psychogram.R;
 
 public class SelectTypeActivity extends AppCompatActivity implements View.OnClickListener{

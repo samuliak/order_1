@@ -1,11 +1,10 @@
-package com.project.samuliak.psychogram.Activity.registration;
+package com.project.samuliak.psychogram.Activity.main.registration;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.project.samuliak.psychogram.API.ClientAPI;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
-import com.project.samuliak.psychogram.Activity.authornization.AuthorizationActivity;
+import com.project.samuliak.psychogram.Activity.main.authornization.AuthorizationActivity;
 import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychogolist;
 import com.project.samuliak.psychogram.R;

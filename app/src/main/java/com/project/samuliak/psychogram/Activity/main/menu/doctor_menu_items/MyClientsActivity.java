@@ -1,4 +1,4 @@
-package com.project.samuliak.psychogram.Activity.menu.doctor_menu;
+package com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychogolist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Constants;
+import com.project.samuliak.psychogram.Util.Utils;
 
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class MyClientsActivity extends AppCompatActivity {
                 .build();
         service = retrofit.create(PsychogolistAPI.class);
         progressDialog = new ProgressDialog(this);
-        initProgressDialog();
+        Utils.initProgressDialog(progressDialog, this);
         doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());
         list_clients = (RecyclerView) findViewById(R.id.list_clients);
         rbCurrent = (RadioButton) findViewById(R.id.rbCurrent);
@@ -77,7 +78,7 @@ public class MyClientsActivity extends AppCompatActivity {
 
     private void getMayClients() {
         Call<List<Client>> listMayCall = service.getPotencialClients(doctor.getLogin());
-        initProgressDialog();
+        Utils.initProgressDialog(progressDialog, this);
         listMayCall.enqueue(new Callback<List<Client>>() {
             @Override
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
@@ -100,7 +101,7 @@ public class MyClientsActivity extends AppCompatActivity {
 
     private void getCurrentClients() {
         Call<List<Client>> listCurrentCall = service.getClientsByDoctorLogin(doctor.getLogin());
-        initProgressDialog();
+        Utils.initProgressDialog(progressDialog, this);
         listCurrentCall.enqueue(new Callback<List<Client>>() {
             @Override
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
@@ -121,10 +122,5 @@ public class MyClientsActivity extends AppCompatActivity {
         });
     }
 
-    private void initProgressDialog() {
-        progressDialog.setMessage(getResources().getString(R.string.connecting_to_server));
-        progressDialog.setCancelable(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.show();
-    }
+
 }

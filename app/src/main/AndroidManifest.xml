@@ -13,20 +13,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.authornization.SelectTypeActivity">
+        <activity android:name=".Activity.main.authornization.SelectTypeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.authornization.AuthorizationActivity" />
-        <activity android:name=".Activity.registration.RegistrationDoctorActivity" />
-        <activity android:name=".Activity.registration.RegistrationClientActivity" />
+        <activity android:name=".Activity.main.authornization.AuthorizationActivity" />
+        <activity android:name=".Activity.main.registration.RegistrationDoctorActivity" />
+        <activity android:name=".Activity.main.registration.RegistrationClientActivity" />
         <activity android:name=".Activity.main.MainDoctorActivity" />
         <activity android:name=".Activity.main.MainClientActivity" />
-        <activity android:name=".Activity.menu.doctor_menu.MyClientsActivity" />
-        <activity android:name=".Activity.menu.doctor_menu.ExClientsActivity"></activity>
+        <activity android:name=".Activity.main.menu.doctor_menu_items.MyClientsActivity" />
+        <activity android:name=".Activity.main.menu.doctor_menu_items.ExClientsActivity" />
+        <activity android:name=".Activity.main.menu.common_items.ProfileDoctorActivity" />
+        <activity
+            android:name=".Activity.main.menu.common_items.CommunicationActivity"
+            android:label="@string/title_activity_communication"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

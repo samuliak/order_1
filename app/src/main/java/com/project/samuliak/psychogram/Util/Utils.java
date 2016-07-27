@@ -1,9 +1,12 @@
 package com.project.samuliak.psychogram.Util;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.TextView;
+
+import com.project.samuliak.psychogram.R;
 
 public class Utils {
     //////// Очищение полей
@@ -74,5 +77,13 @@ public class Utils {
 //        NetworkInfo netInfo = cm.getActiveNetworkInfo();
 //        return netInfo != null && netInfo.isConnectedOrConnecting();
         return true;
+    }
+
+
+    public static void initProgressDialog(ProgressDialog progressDialog, Context context) {
+        progressDialog.setMessage(context.getResources().getString(R.string.connecting_to_server));
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
     }
 }
