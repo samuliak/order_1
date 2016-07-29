@@ -28,6 +28,7 @@ public class Tab implements Parcelable {
     protected Tab(Parcel in) {
         doctor = in.readString();
         client = in.readString();
+        id = in.readInt();
     }
 
     public static final Creator<Tab> CREATOR = new Creator<Tab>() {
@@ -75,5 +76,6 @@ public class Tab implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(doctor);
         dest.writeString(client);
+        dest.writeInt(id);
     }
 }

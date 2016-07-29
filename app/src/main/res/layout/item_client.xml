@@ -62,7 +62,7 @@
                 android:layout_alignParentLeft="true"
                 android:text="@string/profile"
                 android:textSize="12sp"
-                android:background="@drawable/btn_rounded"/>
+                android:background="@drawable/btn_rectangle"/>
 
             <Button
                 android:id="@+id/btnDelete"
@@ -71,7 +71,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="@string/delete"
                 android:textSize="12sp"
-                android:background="@drawable/btn_rounded"/>
+                android:background="@drawable/btn_rectangle"/>
 
             <Button
                 android:id="@+id/btnAgree"
@@ -82,7 +82,7 @@
                 android:clickable="false"
                 android:text="@string/agree"
                 android:textSize="12sp"
-                android:background="@drawable/btn_rounded"/>
+                android:background="@drawable/btn_rectangle"/>
 
         </RelativeLayout>
 

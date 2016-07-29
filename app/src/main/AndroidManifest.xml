@@ -29,9 +29,9 @@
         <activity android:name=".Activity.main.menu.doctor_menu_items.ExClientsActivity" />
         <activity android:name=".Activity.main.menu.common_items.ProfileDoctorActivity" />
         <activity
-            android:name=".Activity.main.menu.common_items.CommunicationActivity"
-            android:label="@string/title_activity_communication"
-            android:theme="@style/AppTheme"></activity>
+            android:name=".Activity.main.menu.common_items.DialogActivity"
+            android:label="@string/online_help" />
+        <activity android:name=".Activity.main.menu.common_items.CommunicationActivity"></activity>
     </application>
 
 </manifest>

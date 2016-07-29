@@ -18,17 +18,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         this.items = items;
     }
 
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView item_name;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            item_name = (TextView) itemView.findViewById(R.id.item_name);
-
-        }
-    }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -45,6 +34,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return items.length;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView item_name;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            item_name = (TextView) itemView.findViewById(R.id.item_name);
+
+        }
     }
 
 }

@@ -5,4 +5,5 @@
     <color name="colorAccent">#ff404d</color>
 
     <color name="background_item_menu">#b5c6da</color>
+    <color name="background_message">#ffffff</color>
 </resources>

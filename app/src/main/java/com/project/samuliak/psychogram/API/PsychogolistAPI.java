@@ -1,6 +1,7 @@
 package com.project.samuliak.psychogram.API;
 
 import com.project.samuliak.psychogram.Model.Client;
+import com.project.samuliak.psychogram.Model.Message;
 import com.project.samuliak.psychogram.Model.Psychogolist;
 import com.project.samuliak.psychogram.Model.Tab;
 
@@ -11,7 +12,9 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface PsychogolistAPI {
     // авторизация
@@ -59,7 +62,7 @@ public interface PsychogolistAPI {
     Call<List<Tab>> getAllTabsByDoctor(@Path("name") String psLogin);
 
     // список табов по клиенту
-    @GET("tab/client{login}")
+    @POST("tab/client{login}")
     Call<List<Tab>> getAllTabsByClient(@Path("login") String login);
 
     // добавить таб
@@ -73,4 +76,16 @@ public interface PsychogolistAPI {
     /*
     Работа с смс
      */
+    // список смс по табу
+    @POST("mes/tab{id}")
+    Call<List<Message>> getAllMessageByTab(@Path("id") int id);
+
+    // добавить смс
+    @POST("mes/save/text{text}/sender{sender}/tab{tab}")
+    Call<Void> addMessage(@Path("text") String text, @Path("sender") String sender,
+                          @Path("tab") int tab);
+
+    // удалить смс
+    @DELETE("mes/{id}")
+    Call<Void> removeMessage(@Path("id") int id);
 }

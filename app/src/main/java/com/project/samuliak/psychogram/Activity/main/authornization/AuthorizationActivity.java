@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -185,6 +186,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Psychogolist> call, Throwable t) {
                 Toast.makeText(getBaseContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
+                Log.e("samuliak", "error > " + t.toString());
                 progressDialog.hide();
                 progressDialog.dismiss();
             }

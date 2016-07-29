@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.project.samuliak.psychogram.Activity.main.menu.common_items.CommunicationActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.common_items.DialogActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.ExClientsActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.MyClientsActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileDoctorActivity;
@@ -56,7 +56,7 @@ public class MainDoctorActivity extends AppCompatActivity {
                             case 3:
                                 break;
                             case 4:
-                                i = new Intent(view.getContext(), CommunicationActivity.class);
+                                i = new Intent(view.getContext(), DialogActivity.class);
                                 i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
