@@ -29,6 +29,9 @@ public class ProfileDoctorActivity extends AppCompatActivity {
 
     private void initActivity() {
         Bundle data = getIntent().getExtras();
+
+        // Приходять такие данные, как сам доктор и 2 переменные типа булеан.
+        // Первая переменная - смотрит ли клиент. И вторая - власная ли это страница
         ImageButton btnSend = (ImageButton) findViewById(R.id.btnSend);
         if (data != null) {
             doctor = data.getParcelable(Psychogolist.class.getCanonicalName());

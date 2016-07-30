@@ -88,4 +88,25 @@ public interface PsychogolistAPI {
     // удалить смс
     @DELETE("mes/{id}")
     Call<Void> removeMessage(@Path("id") int id);
+
+
+    /*
+    Работа с друзьями
+     */
+    // список друзей
+    @POST("friends/{login}")
+    Call<List<Psychogolist>> getAllFriendsByLogin(@Path("login") String login);
+
+    // список запросов на дружбу
+    @POST("friends/request/{login}")
+    Call<List<Psychogolist>> getAllFriendsRequestByLogin(@Path("login") String psLogin);
+
+    // подтвердить дружбу
+    @POST("friends/agree{log}/two{login}")
+    Call<Void> agreeFriend(@Path("log") String log, @Path("login") String login);
+
+    // удалить дружбу
+    @POST("friends/delete{log}/two{login}")
+    Call<Void> deleteFriend(@Path("log") String log, @Path("login") String login);
+
 }

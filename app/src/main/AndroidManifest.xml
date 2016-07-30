@@ -31,7 +31,11 @@
         <activity
             android:name=".Activity.main.menu.common_items.DialogActivity"
             android:label="@string/online_help" />
-        <activity android:name=".Activity.main.menu.common_items.CommunicationActivity"></activity>
+        <activity android:name=".Activity.main.menu.common_items.CommunicationActivity" />
+        <activity
+            android:name=".Activity.main.menu.doctor_menu_items.FriendActivity"
+            android:label="@string/title_activity_friend"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

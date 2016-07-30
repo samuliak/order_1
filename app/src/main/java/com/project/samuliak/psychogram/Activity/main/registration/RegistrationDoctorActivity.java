@@ -137,12 +137,8 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
     }
 
     private void registration(final ProgressDialog progressDialog) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.HOST)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        PsychogolistAPI service = retrofit.create(PsychogolistAPI.class);
-        ClientAPI proverkaService = retrofit.create(ClientAPI.class);
+        PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
+        ClientAPI proverkaService = Utils.getRetrofit().create(ClientAPI.class);
 
         final Psychogolist doctor = new Psychogolist(login, name, surname, password, age,
                 country, city, interest, place_of_work, university, specialization,

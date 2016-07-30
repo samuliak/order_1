@@ -135,13 +135,8 @@ public class AuthorizationActivity extends AppCompatActivity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
-        final Retrofit client = new Retrofit.Builder()
-                .baseUrl(Constants.HOST)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        PsychogolistAPI serviceDoctor = client.create(PsychogolistAPI.class);
-        ClientAPI serviceClient = client.create(ClientAPI.class);
+        PsychogolistAPI serviceDoctor = Utils.getRetrofit().create(PsychogolistAPI.class);
+        ClientAPI serviceClient = Utils.getRetrofit().create(ClientAPI.class);
         final Call<Client> callClient = serviceClient.getClientByLogin(login);
         Call<Psychogolist> callDoctor = serviceDoctor.getDoctorByName(login);
 

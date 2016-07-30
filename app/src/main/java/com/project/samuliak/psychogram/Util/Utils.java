@@ -6,7 +6,14 @@ import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.widget.TextView;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.internal.bind.DateTypeAdapter;
 import com.project.samuliak.psychogram.R;
+
+import java.util.Date;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Utils {
     //////// Очищение полей
@@ -85,5 +92,16 @@ public class Utils {
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
+    }
+
+    // Одержать ретрофит
+    public static Retrofit getRetrofit(){
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Date.class, new DateTypeAdapter());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.HOST)
+                .addConverterFactory(GsonConverterFactory.create(builder.create()))
+                .build();
+        return retrofit;
     }
 }

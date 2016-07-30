@@ -13,6 +13,7 @@ import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychogolist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Constants;
+import com.project.samuliak.psychogram.Util.Utils;
 
 import java.util.List;
 
@@ -37,11 +38,7 @@ public class ExClientsActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.HOST)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(PsychogolistAPI.class);
+        service = Utils.getRetrofit().create(PsychogolistAPI.class);
         progressDialog = new ProgressDialog(this);
         doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());
         rv_ex = (RecyclerView) findViewById(R.id.rv_ex_clients);

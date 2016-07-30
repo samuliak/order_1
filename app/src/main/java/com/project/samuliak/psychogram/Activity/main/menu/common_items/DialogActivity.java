@@ -51,13 +51,7 @@ public class DialogActivity extends ActionBarActivity {
     }
 
     private void initList() {
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(Date.class, new DateTypeAdapter());
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.HOST)
-                .addConverterFactory(GsonConverterFactory.create(builder.create()))
-                .build();
-        final PsychogolistAPI service = retrofit.create(PsychogolistAPI.class);
+        final PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
         Call<List<Tab>> listCall = null;
 
         Bundle data = getIntent().getExtras();

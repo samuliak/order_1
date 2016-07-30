@@ -2,6 +2,7 @@ package com.project.samuliak.psychogram.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Constants;
+import com.project.samuliak.psychogram.Util.Utils;
 
 import java.util.List;
 
@@ -28,13 +30,14 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
     private Context context;
     private boolean CODE;
     private boolean ex;
-
+    private PsychogolistAPI service;
 
     public MyClientsAdapter(Context context, List<Client> list, boolean CODE) {
         this.context = context;
         this.list = list;
         this.CODE = CODE;
         this.ex = false;
+        service = Utils.getRetrofit().create(PsychogolistAPI.class);
     }
 
     public MyClientsAdapter(Context context, List<Client> list, boolean CODE, boolean ex) {
@@ -42,6 +45,7 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
         this.list = list;
         this.CODE = CODE;
         this.ex = ex;
+        Log.e("samuliak", "MyClientsAdapter ex. ");
     }
 
 
@@ -51,7 +55,6 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
         public TextView place_of_live;
         public TextView interest;
         public Button btnProfile, btnDelete, btnAgree;
-        private PsychogolistAPI service;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -62,11 +65,7 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
             btnProfile = (Button) itemView.findViewById(R.id.btnProfile);
             btnDelete = (Button) itemView.findViewById(R.id.btnDelete);
             btnAgree = (Button) itemView.findViewById(R.id.btnAgree);
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.HOST)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            service = retrofit.create(PsychogolistAPI.class);
+
         }
     }
 
@@ -99,7 +98,9 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
             vh.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<Void> agreeClient = vh.service.deleteClient(list.get(position).getLogin());
+                    Log.e("samuliak", "vh.service.deleteClient(list.get(position).getLogin() > "+
+                            service.deleteClient(list.get(position).getLogin()));
+                    Call<Void> agreeClient = service.deleteClient(list.get(position).getLogin());
                     agreeClient.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
@@ -122,7 +123,7 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
         vh.btnAgree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Void> agreeClient = vh.service.agreeClient(list.get(position).getLogin());
+                Call<Void> agreeClient = service.agreeClient(list.get(position).getLogin());
                 agreeClient.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {

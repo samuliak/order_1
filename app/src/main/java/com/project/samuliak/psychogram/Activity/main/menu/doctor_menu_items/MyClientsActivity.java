@@ -45,11 +45,7 @@ public class MyClientsActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.HOST)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        service = retrofit.create(PsychogolistAPI.class);
+        service = Utils.getRetrofit().create(PsychogolistAPI.class);
         progressDialog = new ProgressDialog(this);
         Utils.initProgressDialog(progressDialog, this);
         doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());

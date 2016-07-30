@@ -58,13 +58,7 @@ public class CommunicationActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         Utils.initProgressDialog(progressDialog, this);
         Button btnSend = (Button) findViewById(R.id.btn_send);
-        GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(Date.class, new DateTypeAdapter());
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.HOST)
-                .addConverterFactory(GsonConverterFactory.create(builder.create()))
-                .build();
-        final PsychogolistAPI service = retrofit.create(PsychogolistAPI.class);
+        final PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
         assert tab != null;
         Call<List<Message>> listCall = service.getAllMessageByTab(tab.getId());
         listCall.enqueue(new Callback<List<Message>>() {

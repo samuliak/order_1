@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.DialogActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.ExClientsActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.FriendActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.MyClientsActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileDoctorActivity;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
@@ -63,12 +64,16 @@ public class MainDoctorActivity extends AppCompatActivity {
                             case 5:
                                 i = new Intent(view.getContext(), ProfileDoctorActivity.class);
                                 i.putExtra("IS_CLIENT_LOOK", false);
+                                i.putExtra("IS_OWN_ACCOUNT", true);
                                 i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
                             case 6:
                                 break;
                             case 7:
+                                i = new Intent(view.getContext(), FriendActivity.class);
+                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                startActivity(i);
                                 break;
                             case 8:
                                 break;
