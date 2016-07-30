@@ -42,10 +42,6 @@ public interface PsychogolistAPI {
     Call<Void> addClient(@Path("log") String log, @Path("login") String login);
 
     // подтвердить клиента
-    @POST("psychologist/delete/{login}")
-    Call<Void> deleteClient(@Path("login") String login);
-
-    // удалить клиента
     @POST("psychologist/agree/{login}")
     Call<Void> agreeClient(@Path("login") String login);
 

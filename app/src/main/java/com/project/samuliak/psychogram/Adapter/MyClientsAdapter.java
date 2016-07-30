@@ -98,14 +98,33 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
             vh.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("samuliak", "vh.service.deleteClient(list.get(position).getLogin() > "+
-                            service.deleteClient(list.get(position).getLogin()));
-                    Call<Void> agreeClient = service.deleteClient(list.get(position).getLogin());
+                    Call<Void> deleteClient = service.removeClient(list.get(position).getLogin());
+                    deleteClient.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.isSuccessful()) {
+                                vh.btnDelete.setText(R.string.deleted);
+                                vh.btnDelete.setBackgroundResource(R.drawable.btn_delete);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(context, "Ошибка при соединении!", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            });
+
+            vh.btnAgree.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Call<Void> agreeClient = service.agreeClient(list.get(position).getLogin());
                     agreeClient.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            vh.btnDelete.setText(R.string.deleted);
-                            vh.btnDelete.setBackgroundResource(R.drawable.btn_delete);
+                            vh.btnAgree.setText(R.string.agreed);
+                            vh.btnAgree.setBackgroundResource(R.drawable.btn_agree);
                         }
 
                         @Override
@@ -120,24 +139,6 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
             vh.btnDelete.setClickable(false);
         }
 
-        vh.btnAgree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Call<Void> agreeClient = service.agreeClient(list.get(position).getLogin());
-                agreeClient.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        vh.btnAgree.setText(R.string.agreed);
-                        vh.btnAgree.setBackgroundResource(R.drawable.btn_agree);
-                    }
-
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(context, "Ошибка при соединении!", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
 
 
 

@@ -1,17 +1,17 @@
 package com.project.samuliak.psychogram.Activity.main;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.DialogActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileDoctorActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.ExClientsActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.FriendActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.MyClientsActivity;
-import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileDoctorActivity;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
 import com.project.samuliak.psychogram.Listener.RecyclerClickListener;
 import com.project.samuliak.psychogram.Model.Psychogolist;
