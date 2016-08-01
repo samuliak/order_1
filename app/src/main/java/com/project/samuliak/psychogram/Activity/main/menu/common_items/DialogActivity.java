@@ -40,6 +40,8 @@ public class DialogActivity extends ActionBarActivity {
 
     private static ProgressDialog progressDialog;
     private boolean isDoctor;
+    private Psychogolist doctor;
+    private Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +58,8 @@ public class DialogActivity extends ActionBarActivity {
 
         Bundle data = getIntent().getExtras();
         if (data != null) {
-            Psychogolist doctor = data.getParcelable(Psychogolist.class.getCanonicalName());
-            Client client = data.getParcelable(Client.class.getCanonicalName());
+            doctor = data.getParcelable(Psychogolist.class.getCanonicalName());
+            client = data.getParcelable(Client.class.getCanonicalName());
             if (doctor != null) {
                 listCall = service.getAllTabsByDoctor(doctor.getLogin());
                 isDoctor = true;
@@ -86,7 +88,10 @@ public class DialogActivity extends ActionBarActivity {
                                 public void onItemClick(View view, int position) {
                                     Intent i = new Intent(getBaseContext(), CommunicationActivity.class);
                                     i.putExtra(Tab.class.getCanonicalName(), response.body().get(position));
-                                    i.putExtra("is_doctor", true);
+                                    if (doctor != null)
+                                        i.putExtra("is_doctor", true);
+                                    else if (client != null)
+                                        i.putExtra("is_doctor", false);
                                     startActivity(i);
                                 }
                             }));
@@ -104,12 +109,6 @@ public class DialogActivity extends ActionBarActivity {
         });
     }
 
-    private static class DateTypeAdapter implements JsonDeserializer<Date> {
-        @Override
-        public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            return new Date(json.getAsLong());
-        }
-    }
 }
 
 

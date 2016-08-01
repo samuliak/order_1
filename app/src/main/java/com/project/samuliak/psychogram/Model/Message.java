@@ -10,26 +10,35 @@ public class Message {
     @SerializedName("text")
     @Expose
     private String text;
+
     @SerializedName("creation_date")
     @Expose
     private Date creationDate;
+
     @SerializedName("sender")
     @Expose
     private String sender;
+
+    @SerializedName("full_sender")
+    @Expose
+    private String full_sender;
+
     @SerializedName("tab_id")
     @Expose
     private Integer tabId;
+
     @SerializedName("id")
     @Expose
     private Integer id;
 
     public Message(){}
 
-    public Message(String text, Date creationDate, String sender, Integer tabId) {
+    public Message(String text, Date creation_date, int tab_id, String sender, String full) {
         this.text = text;
-        this.creationDate = creationDate;
+        this.creationDate = creation_date;
+        this.tabId = tab_id;
         this.sender = sender;
-        this.tabId = tabId;
+        this.full_sender = full;
     }
 
     public String getText() {
@@ -70,5 +79,13 @@ public class Message {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getFull_sender() {
+        return full_sender;
+    }
+
+    public void setFull_sender(String full_sender) {
+        this.full_sender = full_sender;
     }
 }

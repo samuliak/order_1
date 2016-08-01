@@ -194,9 +194,15 @@ public class AuthorizationActivity extends AppCompatActivity {
     private void setSharedPreferencesAndStartListActivity(){
         SharedPreferences.Editor editor = mSettings.edit();
         if(saveInfo.isChecked()) {
-            editor.putLong(Constants.APP_PREFERENCES_ID, doctor.getId());
-            editor.putString(Constants.APP_PREFERENCES_LOGIN, doctor.getLogin());
-            editor.putString(Constants.APP_PREFERENCES_PASSWORD, doctor.getPassword());
+            if (doctor == null){
+                editor.putLong(Constants.APP_PREFERENCES_ID, clientBody.getId());
+                editor.putString(Constants.APP_PREFERENCES_LOGIN, clientBody.getLogin());
+                editor.putString(Constants.APP_PREFERENCES_PASSWORD, clientBody.getPassword());
+            }else {
+                editor.putLong(Constants.APP_PREFERENCES_ID, doctor.getId());
+                editor.putString(Constants.APP_PREFERENCES_LOGIN, doctor.getLogin());
+                editor.putString(Constants.APP_PREFERENCES_PASSWORD, doctor.getPassword());
+            }
             if (autoSign.isChecked())
                 editor.putBoolean(Constants.IS_AUTO_SIGN, true);
             else editor.putBoolean(Constants.IS_AUTO_SIGN, false);
@@ -205,7 +211,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             editor.clear();
         }
         Intent i;
-        if (doctor == null && clientBody != null){
+        if (doctor == null){
             i = new Intent(getBaseContext(), MainClientActivity.class);
             i.putExtra(Client.class.getCanonicalName(), clientBody);
         } else {

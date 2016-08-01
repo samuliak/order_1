@@ -29,12 +29,14 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
     private Context context;
     private boolean FRIEND;
     private Psychogolist doctor;
+    private int request;
 
-    public FriendsAdapter(Context context, List<Psychogolist> list, boolean FRIEND, Psychogolist doctor){
+    public FriendsAdapter(Context context, List<Psychogolist> list, boolean FRIEND, Psychogolist doctor, int i){
         this.context = context;
         this.list = list;
         this.FRIEND = FRIEND;
         this.doctor = doctor;
+        this.request = i;
     }
 
     @Override
@@ -69,7 +71,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
             btn_agree = (Button) itemView.findViewById(R.id.btn_agree);
             btn_delete = (Button) itemView.findViewById(R.id.btn_delete);
 
-            if(!FRIEND){
+            if(!FRIEND && request != 3){
                 btn_agree.setClickable(true);
                 btn_agree.setVisibility(View.VISIBLE);
                 btn_agree.setOnClickListener(new View.OnClickListener() {

@@ -14,8 +14,15 @@
         android:id="@+id/rv_mes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linear"
+        android:layout_above="@+id/error_container"
         android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/error_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_above="@+id/linear"/>
 
     <LinearLayout
         android:id="@+id/linear"

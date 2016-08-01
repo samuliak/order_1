@@ -26,5 +26,4 @@ public interface ClientAPI {
     @GET("client/psadd/client{id}/login{login}")
     Call<Void> setPsychologistClient(@Path("id") int id, @Path("login") String login);
 
-
 }

@@ -77,9 +77,9 @@ public interface PsychogolistAPI {
     Call<List<Message>> getAllMessageByTab(@Path("id") int id);
 
     // добавить смс
-    @POST("mes/save/text{text}/sender{sender}/tab{tab}")
+    @POST("mes/save/text{text}/sender{sender},full{full_sender}/tab{tab}")
     Call<Void> addMessage(@Path("text") String text, @Path("sender") String sender,
-                          @Path("tab") int tab);
+                          @Path("full_sender") String full_sender, @Path("tab") int tab);
 
     // удалить смс
     @DELETE("mes/{id}")
@@ -93,9 +93,13 @@ public interface PsychogolistAPI {
     @POST("friends/{login}")
     Call<List<Psychogolist>> getAllFriendsByLogin(@Path("login") String login);
 
-    // список запросов на дружбу
-    @POST("friends/request/{login}")
-    Call<List<Psychogolist>> getAllFriendsRequestByLogin(@Path("login") String psLogin);
+    // список запросов на дружбу, которые пришли
+    @POST("friends/inputrequest/{login}")
+    Call<List<Psychogolist>> getAllFriendsInputRequestByLogin(@Path("login") String psLogin);
+
+    // список запросов на дружбу, которые отправил
+    @POST("friends/outputrequest/{login}")
+    Call<List<Psychogolist>> getAllFriendsOutputRequest(@Path("login") String psLogin);
 
     // подтвердить дружбу
     @POST("friends/agree{log}/two{login}")
@@ -104,5 +108,13 @@ public interface PsychogolistAPI {
     // удалить дружбу
     @POST("friends/delete{log}/two{login}")
     Call<Void> deleteFriend(@Path("log") String log, @Path("login") String login);
+
+    /*
+    список докторов, которые в онлайне
+     */
+
+    // список докторов, которые онлайн
+    @POST("psychologist/online")
+    Call<List<Psychogolist>> getAllDoctorWhoIsOnline();
 
 }

@@ -40,7 +40,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(ViewHolder vh, int position) {
         vh.text.setText(list.get(position).getText());
         vh.date.setText(fmt.format(list.get(position).getCreationDate()));
-        vh.sender.setText(context.getResources().getString(R.string.sender)+" "+list.get(position).getSender());
+        vh.sender.setText(context.getResources().getString(R.string.sender)+" "+list.get(position).getFull_sender());
+        vh.position = position;
     }
 
     @Override
@@ -51,6 +52,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView text, date, sender;
+        public int position;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -61,6 +63,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+                    Log.e("samuliak", "position > "+position);
                     return false;
                 }
             });

@@ -7,9 +7,14 @@ import android.support.design.widget.TextInputLayout;
 import android.widget.TextView;
 
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 import com.google.gson.internal.bind.DateTypeAdapter;
 import com.project.samuliak.psychogram.R;
 
+import java.lang.reflect.Type;
 import java.util.Date;
 
 import retrofit2.Retrofit;
@@ -103,5 +108,12 @@ public class Utils {
                 .addConverterFactory(GsonConverterFactory.create(builder.create()))
                 .build();
         return retrofit;
+    }
+
+    private static class DateTypeAdapter implements JsonDeserializer<Date> {
+        @Override
+        public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            return new Date(json.getAsLong());
+        }
     }
 }

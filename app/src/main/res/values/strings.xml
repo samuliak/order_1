@@ -57,8 +57,13 @@
     <string name="send">Отправить</string>
     <string name="title_activity_friend">Друзья</string>
     <string name="friends">Друзья</string>
-    <string name="request">Заявки</string>
+    <string name="input_request">Заявки</string>
     <string name="title_activity_my_client">Клиенты</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="output_request">Исходные заявки</string>
+
+    <string name="find_doctor">Поиск психолога</string>
+    <string name="who_is_online">Кто сейчас онлайн</string>
+    <string name="everybook">Дневники</string>
+    <string name="anketa">Анкета</string>
+    <string name="doctor_rules">Кодекс психолога</string>
 </resources>

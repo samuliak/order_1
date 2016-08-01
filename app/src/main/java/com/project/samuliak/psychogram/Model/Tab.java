@@ -11,23 +11,37 @@ public class Tab implements Parcelable {
     @SerializedName("doctor")
     @Expose
     public String doctor;
+
     @SerializedName("client")
     @Expose
     public String client;
+
+    @SerializedName("full_name_doctor")
+    @Expose
+    public String full_doctor;
+
+    @SerializedName("full_name_client")
+    @Expose
+    public String full_client;
+
     @SerializedName("id")
     @Expose
     public Integer id;
 
     public Tab(){}
 
-    public Tab(String doctor, String client) {
+    public Tab(String doctor, String client, String full_doctor, String full_client) {
         this.doctor = doctor;
         this.client = client;
+        this.full_doctor = full_doctor;
+        this.full_client = full_client;
     }
 
     protected Tab(Parcel in) {
         doctor = in.readString();
         client = in.readString();
+        full_doctor = in.readString();
+        full_client = in.readString();
         id = in.readInt();
     }
 
@@ -67,6 +81,22 @@ public class Tab implements Parcelable {
         this.id = id;
     }
 
+    public String getFull_doctor() {
+        return full_doctor;
+    }
+
+    public void setFull_doctor(String full_doctor) {
+        this.full_doctor = full_doctor;
+    }
+
+    public String getFull_client() {
+        return full_client;
+    }
+
+    public void setFull_client(String full_client) {
+        this.full_client = full_client;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -76,6 +106,8 @@ public class Tab implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(doctor);
         dest.writeString(client);
+        dest.writeString(full_doctor);
+        dest.writeString(full_client);
         dest.writeInt(id);
     }
 }

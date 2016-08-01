@@ -1,7 +1,6 @@
 package com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +12,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
@@ -66,10 +62,10 @@ public class FriendActivity extends AppCompatActivity {
 
         public PlaceholderFragment() {}
 
-        public static PlaceholderFragment newInstance(boolean b) {
+        public static PlaceholderFragment newInstance(int b) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putBoolean("friend", b);
+            args.putInt("page", b);
             fragment.setArguments(args);
             return fragment;
         }
@@ -81,7 +77,7 @@ public class FriendActivity extends AppCompatActivity {
             final RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.rv_friends);
             if (doctor != null){
                 PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
-                if(getArguments().getBoolean("friend")) {
+                if(getArguments().getInt("page") == 1) {
                     Call<List<Psychogolist>> call = service.getAllFriendsByLogin(doctor.getLogin());
                     final ProgressDialog progressDialog = new ProgressDialog(rootView.getContext());
                     Utils.initProgressDialog(progressDialog, rootView.getContext());
@@ -90,7 +86,7 @@ public class FriendActivity extends AppCompatActivity {
                         public void onResponse(Call<List<Psychogolist>> call, Response<List<Psychogolist>> response) {
                             if (response.isSuccessful()) {
                                 FriendsAdapter adapter = new FriendsAdapter(getContext(), response.body(),
-                                        true, doctor);
+                                        true, doctor, 1);
                                 rv.setAdapter(adapter);
                                 rv.setLayoutManager(new LinearLayoutManager(getContext()));
                             }
@@ -103,8 +99,8 @@ public class FriendActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                         }
                     });
-                } else {
-                    Call<List<Psychogolist>> call = service.getAllFriendsRequestByLogin(doctor.getLogin());
+                } else if (getArguments().getInt("page") == 2){
+                    Call<List<Psychogolist>> call = service.getAllFriendsInputRequestByLogin(doctor.getLogin());
                     final ProgressDialog progressDialog = new ProgressDialog(rootView.getContext());
                     Utils.initProgressDialog(progressDialog, rootView.getContext());
                     call.enqueue(new Callback<List<Psychogolist>>() {
@@ -112,7 +108,29 @@ public class FriendActivity extends AppCompatActivity {
                         public void onResponse(Call<List<Psychogolist>> call, Response<List<Psychogolist>> response) {
                             if (response.isSuccessful()) {
                                 FriendsAdapter adapter = new FriendsAdapter(getContext(), response.body(),
-                                        false, doctor);
+                                        false, doctor, 2);
+                                rv.setAdapter(adapter);
+                                rv.setLayoutManager(new LinearLayoutManager(getContext()));
+                            }
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Psychogolist>> call, Throwable t) {
+                            Toast.makeText(getContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+                        }
+                    });
+                } else if (getArguments().getInt("page") == 3){
+                    Call<List<Psychogolist>> call = service.getAllFriendsOutputRequest(doctor.getLogin());
+                    final ProgressDialog progressDialog = new ProgressDialog(rootView.getContext());
+                    Utils.initProgressDialog(progressDialog, rootView.getContext());
+                    call.enqueue(new Callback<List<Psychogolist>>() {
+                        @Override
+                        public void onResponse(Call<List<Psychogolist>> call, Response<List<Psychogolist>> response) {
+                            if (response.isSuccessful()) {
+                                FriendsAdapter adapter = new FriendsAdapter(getContext(), response.body(),
+                                        false, doctor, 3);
                                 rv.setAdapter(adapter);
                                 rv.setLayoutManager(new LinearLayoutManager(getContext()));
                             }
@@ -141,14 +159,15 @@ public class FriendActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0)
-                return PlaceholderFragment.newInstance(true);
-            else
-                return PlaceholderFragment.newInstance(false);
+                return PlaceholderFragment.newInstance(1);
+            else if (position == 1)
+                return PlaceholderFragment.newInstance(2);
+            else return PlaceholderFragment.newInstance(3);
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @Override
@@ -157,7 +176,9 @@ public class FriendActivity extends AppCompatActivity {
                 case 0:
                     return getString(R.string.friends);
                 case 1:
-                    return getString(R.string.request);
+                    return getString(R.string.input_request);
+                case 2:
+                    return getString(R.string.output_request);
             }
             return null;
         }

@@ -25,8 +25,9 @@
         <activity android:name=".Activity.main.registration.RegistrationClientActivity" />
         <activity android:name=".Activity.main.MainDoctorActivity" />
         <activity android:name=".Activity.main.MainClientActivity" />
-        <activity android:name=".Activity.main.menu.doctor_menu_items.ExClientsActivity"
-            android:label="@string/online_help"/>
+        <activity
+            android:name=".Activity.main.menu.doctor_menu_items.ExClientsActivity"
+            android:label="@string/online_help" />
         <activity android:name=".Activity.main.menu.common_items.ProfileDoctorActivity" />
         <activity
             android:name=".Activity.main.menu.common_items.DialogActivity"
@@ -39,7 +40,8 @@
         <activity
             android:name=".Activity.main.menu.doctor_menu_items.MyClientsActivity"
             android:label="@string/title_activity_my_client"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activity.main.menu.client_menu_items.OnlineActivity"></activity>
     </application>
 
 </manifest>

@@ -36,9 +36,9 @@ public class DialogAdapter extends RecyclerView.Adapter<DialogAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
         if (isDoctor)
-            vh.name.setText(list.get(position).getClient());
+            vh.name.setText(list.get(position).getFull_client());
         else
-            vh.name.setText(list.get(position).getDoctor());
+            vh.name.setText(list.get(position).getFull_doctor());
     }
 
     @Override
