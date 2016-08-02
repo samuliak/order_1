@@ -39,6 +39,7 @@ public class CommunicationActivity extends AppCompatActivity {
     private boolean isDoctor;
     private List<Message> list;
     private MessageAdapter adapter;
+    private LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +51,9 @@ public class CommunicationActivity extends AppCompatActivity {
 
     private void initList() {
         final Tab tab = getIntent().getExtras().getParcelable(Tab.class.getCanonicalName());
-        final LinearLayout container = (LinearLayout) findViewById(R.id.error_container);
+        container = (LinearLayout) findViewById(R.id.error_container);
         final LayoutInflater inflater = getLayoutInflater();
-
+        final View view = inflater.inflate(R.layout.message_is_empty, null);
         isDoctor = getIntent().getExtras().getBoolean("is_doctor");
         final RecyclerView rv_mes = (RecyclerView) findViewById(R.id.rv_mes);
         final TextView textView = (TextView) findViewById(R.id.text_mes);
@@ -67,12 +68,8 @@ public class CommunicationActivity extends AppCompatActivity {
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 if (response.isSuccessful()){
                     if (response.body().size() == 0) {
-                        /*
-                        Что то придумать с добавление вьюхи, что смс нет
-                         */
-//                        assert container != null;
-//                        View view = inflater.inflate(R.layout.message_is_empty, null);
-//                        container.addView(view);
+                        assert container != null;
+                        container.addView(view);
                     }
                     list = response.body();
                     adapter = new MessageAdapter(getBaseContext(), list);
@@ -104,6 +101,8 @@ public class CommunicationActivity extends AppCompatActivity {
                     textView.setError(getBaseContext().getResources().getString(R.string.fill_the_field));
                     return;
                 }
+                assert container != null;
+                container.removeView(view);
                 Call<Void> call = null;
                 Message local_mes = null;
                 if (isDoctor) {

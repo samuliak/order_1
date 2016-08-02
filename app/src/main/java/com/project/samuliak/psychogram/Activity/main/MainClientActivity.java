@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.JournalActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.OnlineActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.DialogActivity;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
@@ -51,6 +52,9 @@ public class MainClientActivity extends AppCompatActivity {
                                 startActivity(i);
                                 break;
                             case 2:
+                                i = new Intent(view.getContext(), JournalActivity.class);
+                                i.putExtra(Client.class.getCanonicalName(), client);
+                                startActivity(i);
                                 break;
                             case 3:
                                 /*

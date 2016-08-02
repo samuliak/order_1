@@ -2,9 +2,13 @@ package com.project.samuliak.psychogram.API;
 
 
 import com.project.samuliak.psychogram.Model.Client;
+import com.project.samuliak.psychogram.Model.Journal;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -22,8 +26,12 @@ public interface ClientAPI {
     @POST("client/save")
     Call<Void> saveClient(@Body Client client);
 
-    // назначить врача клиенту
-    @GET("client/psadd/client{id}/login{login}")
-    Call<Void> setPsychologistClient(@Path("id") int id, @Path("login") String login);
+    // список журналов
+    @POST("client/journal{login}")
+    Call<List<Journal>> getAllJournalsByLogin(@Path("login") String login);
+
+    // добавить журнал
+    @POST("journal/save/note{note}/client{client}")
+    Call<Void> saveJournal(@Path("note") String note, @Path("client") String client);
 
 }

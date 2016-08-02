@@ -41,7 +41,11 @@
             android:name=".Activity.main.menu.doctor_menu_items.MyClientsActivity"
             android:label="@string/title_activity_my_client"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.main.menu.client_menu_items.OnlineActivity"></activity>
+        <activity android:name=".Activity.main.menu.client_menu_items.OnlineActivity" />
+        <activity
+            android:name=".Activity.main.menu.client_menu_items.JournalActivity"
+            android:label="@string/title_activity_journal"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

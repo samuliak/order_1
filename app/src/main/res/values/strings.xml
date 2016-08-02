@@ -66,4 +66,6 @@
     <string name="everybook">Дневники</string>
     <string name="anketa">Анкета</string>
     <string name="doctor_rules">Кодекс психолога</string>
+
+    <string name="title_activity_journal">Дневник</string>
 </resources>
