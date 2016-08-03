@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.JournalActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.OnlineActivity;
+import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.QuestionnaireActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.DialogActivity;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
 import com.project.samuliak.psychogram.Listener.RecyclerClickListener;
@@ -57,11 +58,9 @@ public class MainClientActivity extends AppCompatActivity {
                                 startActivity(i);
                                 break;
                             case 3:
-                                /*
-                                Сделать легко. Создать модель анкеты и заполнить её данными.
-                                Основная загвоздка состоит в том, что пока что не ясно
-                                какой тип активности использовать для этого.
-                                 */
+                                i = new Intent(view.getContext(), QuestionnaireActivity.class);
+                                i.putExtra(Client.class.getCanonicalName(), client);
+                                startActivity(i);
                                 break;
                             case 4:
                                 break;

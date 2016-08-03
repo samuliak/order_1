@@ -3,6 +3,7 @@ package com.project.samuliak.psychogram.API;
 
 import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Journal;
+import com.project.samuliak.psychogram.Model.Questionnaire;
 
 import java.util.List;
 
@@ -34,4 +35,11 @@ public interface ClientAPI {
     @POST("journal/save/note{note}/client{client}")
     Call<Void> saveJournal(@Path("note") String note, @Path("client") String client);
 
+    // получение анкеты по логину клиента
+    @POST("questionnaire/{login}")
+    Call<Questionnaire> getQuestionnaireByLogin(@Path("login") String login);
+
+    // сохранить анкету
+    @POST("questionnaire/save")
+    Call<Void> saveQuestionnaire(@Body Questionnaire questionnaire);
 }
