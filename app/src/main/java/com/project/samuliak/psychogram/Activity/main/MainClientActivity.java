@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.FindActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.JournalActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.OnlineActivity;
 import com.project.samuliak.psychogram.Activity.main.menu.client_menu_items.QuestionnaireActivity;
@@ -43,9 +44,9 @@ public class MainClientActivity extends AppCompatActivity {
                         Intent i;
                         switch (position){
                             case 0:
-//                                i = new Intent(view.getContext(), MyClientsActivity.class);
-//                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
-//                                startActivity(i);
+                                i = new Intent(view.getContext(), FindActivity.class);
+                                i.putExtra(Client.class.getCanonicalName(), client);
+                                startActivity(i);
                                 break;
                             case 1:
                                 i = new Intent(view.getContext(), OnlineActivity.class);

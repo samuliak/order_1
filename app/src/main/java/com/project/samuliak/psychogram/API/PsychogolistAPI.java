@@ -2,7 +2,7 @@ package com.project.samuliak.psychogram.API;
 
 import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Message;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.Model.Tab;
 
 import java.util.List;
@@ -12,18 +12,31 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface PsychogolistAPI {
+
+    // получить всех психологов
+    @POST("psychologist")
+    Call<List<Psychologist>> getAllPsychologist();
+
+    // получить рандомно 50 психологов
+    @POST("psychologist/random")
+    Call<List<Psychologist>> getRandomPsychologist();
+
+    // получить всех психологов по параметрам
+    @POST("psychologist/country{country}/city{city}/competence{competence}")
+    Call<List<Psychologist>> getAllPsychologistByParameters(@Path("country") String country,
+                                                            @Path("city") String city,
+                                                            @Path("competence") String competence);
+
     // авторизация
     @GET("psychologist/login{login}")
-    Call<Psychogolist> getDoctorByName(@Path("login") String login);
+    Call<Psychologist> getDoctorByName(@Path("login") String login);
 
     // регистрация
     @POST("psychologist/save")
-    Call<Void> saveDoctor(@Body Psychogolist doctor);
+    Call<Void> saveDoctor(@Body Psychologist doctor);
 
     // список клиентов
     @POST("client/doctor/login{name}")
@@ -91,15 +104,15 @@ public interface PsychogolistAPI {
      */
     // список друзей
     @POST("friends/{login}")
-    Call<List<Psychogolist>> getAllFriendsByLogin(@Path("login") String login);
+    Call<List<Psychologist>> getAllFriendsByLogin(@Path("login") String login);
 
     // список запросов на дружбу, которые пришли
     @POST("friends/inputrequest/{login}")
-    Call<List<Psychogolist>> getAllFriendsInputRequestByLogin(@Path("login") String psLogin);
+    Call<List<Psychologist>> getAllFriendsInputRequestByLogin(@Path("login") String psLogin);
 
     // список запросов на дружбу, которые отправил
     @POST("friends/outputrequest/{login}")
-    Call<List<Psychogolist>> getAllFriendsOutputRequest(@Path("login") String psLogin);
+    Call<List<Psychologist>> getAllFriendsOutputRequest(@Path("login") String psLogin);
 
     // подтвердить дружбу
     @POST("friends/agree{log}/two{login}")
@@ -115,6 +128,6 @@ public interface PsychogolistAPI {
 
     // список докторов, которые онлайн
     @POST("psychologist/online")
-    Call<List<Psychogolist>> getAllDoctorWhoIsOnline();
+    Call<List<Psychologist>> getAllDoctorWhoIsOnline();
 
 }

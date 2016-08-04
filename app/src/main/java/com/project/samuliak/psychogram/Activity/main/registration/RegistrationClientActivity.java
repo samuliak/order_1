@@ -16,16 +16,13 @@ import com.project.samuliak.psychogram.API.ClientAPI;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Activity.main.authornization.AuthorizationActivity;
 import com.project.samuliak.psychogram.Model.Client;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
-import com.project.samuliak.psychogram.Util.Constants;
 import com.project.samuliak.psychogram.Util.Utils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistrationClientActivity extends AppCompatActivity {
     private TextInputLayout loginRegIL, passwordRegIL, nameRegIL, surnameRegIL;
@@ -128,11 +125,11 @@ public class RegistrationClientActivity extends AppCompatActivity {
 //            user.setImage(Utils.drawableToBitmap(circleImageView.getBackground()));
 //        else user.setImage(Utils
 //                .drawableToBitmap(getResources().getDrawable(R.drawable.default_avatar)));
-        final Call<Psychogolist> proverka = proverkaService.getDoctorByName(client.getLogin());
+        final Call<Psychologist> proverka = proverkaService.getDoctorByName(client.getLogin());
         final Call<Void> str = service.saveClient(client);
-        proverka.enqueue(new Callback<Psychogolist>() {
+        proverka.enqueue(new Callback<Psychologist>() {
             @Override
-            public void onResponse(Call<Psychogolist> call, Response<Psychogolist> response) {
+            public void onResponse(Call<Psychologist> call, Response<Psychologist> response) {
                if (response.isSuccessful())
                    loginIsBusy();
                else {
@@ -165,7 +162,7 @@ public class RegistrationClientActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Psychogolist> call, Throwable t) {}
+            public void onFailure(Call<Psychologist> call, Throwable t) {}
 
             private void loginIsBusy() {
                 progressDialog.hide();

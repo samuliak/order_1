@@ -21,7 +21,7 @@ import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Activity.main.MainClientActivity;
 import com.project.samuliak.psychogram.Activity.main.MainDoctorActivity;
 import com.project.samuliak.psychogram.Model.Client;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Constants;
 import com.project.samuliak.psychogram.Util.Utils;
@@ -29,12 +29,10 @@ import com.project.samuliak.psychogram.Util.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthorizationActivity extends AppCompatActivity {
 
-    private Psychogolist doctor;
+    private Psychologist doctor;
     private Client clientBody;
     private TextView loginTv, passwordTv;
     private TextInputLayout loginInputLayout, passwordInputLayout;
@@ -62,12 +60,12 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            Psychogolist doctor;
+            Psychologist doctor;
             Client client;
             String type = bundle.getString("TYPE");
             assert type != null;
             if (type.equals("Doctor")) {
-                doctor = bundle.getParcelable(Psychogolist.class.getCanonicalName());
+                doctor = bundle.getParcelable(Psychologist.class.getCanonicalName());
                 assert doctor != null;
                 loginTv.setText(doctor.getLogin());
                 passwordTv.setText(doctor.getPassword());
@@ -138,11 +136,11 @@ public class AuthorizationActivity extends AppCompatActivity {
         PsychogolistAPI serviceDoctor = Utils.getRetrofit().create(PsychogolistAPI.class);
         ClientAPI serviceClient = Utils.getRetrofit().create(ClientAPI.class);
         final Call<Client> callClient = serviceClient.getClientByLogin(login);
-        Call<Psychogolist> callDoctor = serviceDoctor.getDoctorByName(login);
+        Call<Psychologist> callDoctor = serviceDoctor.getDoctorByName(login);
 
-        callDoctor.enqueue(new Callback<Psychogolist>() {
+        callDoctor.enqueue(new Callback<Psychologist>() {
             @Override
-            public void onResponse(Call<Psychogolist> call, Response<Psychogolist> response) {
+            public void onResponse(Call<Psychologist> call, Response<Psychologist> response) {
                 if (response.isSuccessful()) {
                     doctor = response.body();
                     if (doctor.getPassword().equals(password)) {
@@ -179,7 +177,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Psychogolist> call, Throwable t) {
+            public void onFailure(Call<Psychologist> call, Throwable t) {
                 Toast.makeText(getBaseContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
                 Log.e("samuliak", "error > " + t.toString());
                 progressDialog.hide();
@@ -216,7 +214,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             i.putExtra(Client.class.getCanonicalName(), clientBody);
         } else {
             i = new Intent(getBaseContext(), MainDoctorActivity.class);
-            i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+            i.putExtra(Psychologist.class.getCanonicalName(), doctor);
         }
         startActivity(i);
     }

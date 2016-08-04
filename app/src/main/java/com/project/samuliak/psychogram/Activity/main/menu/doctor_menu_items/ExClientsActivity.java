@@ -11,9 +11,8 @@ import android.widget.Toast;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Adapter.MyClientsAdapter;
 import com.project.samuliak.psychogram.Model.Client;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
-import com.project.samuliak.psychogram.Util.Constants;
 import com.project.samuliak.psychogram.Util.Utils;
 
 import java.util.List;
@@ -21,12 +20,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ExClientsActivity extends AppCompatActivity {
 
-    private Psychogolist doctor;
+    private Psychologist doctor;
     private RecyclerView rv_ex;
     private PsychogolistAPI service;
     private ProgressDialog progressDialog;
@@ -43,7 +40,7 @@ public class ExClientsActivity extends AppCompatActivity {
     private void initUI() {
         service = Utils.getRetrofit().create(PsychogolistAPI.class);
         progressDialog = new ProgressDialog(this);
-        doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());
+        doctor = getIntent().getExtras().getParcelable(Psychologist.class.getCanonicalName());
         rv_ex = (RecyclerView) findViewById(R.id.rv_ex_clients);
         getExClients();
     }
@@ -56,7 +53,7 @@ public class ExClientsActivity extends AppCompatActivity {
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
                 if (response.isSuccessful()){
                     MyClientsAdapter adapter = new MyClientsAdapter(getBaseContext(), response.body(),
-                            false, true);
+                            false, true, doctor.getLogin());
                     rv_ex.setAdapter(adapter);
                     rv_ex.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 }

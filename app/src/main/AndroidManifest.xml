@@ -46,7 +46,9 @@
             android:name=".Activity.main.menu.client_menu_items.JournalActivity"
             android:label="@string/title_activity_journal"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.main.menu.client_menu_items.QuestionnaireActivity"></activity>
+        <activity android:name=".Activity.main.menu.client_menu_items.QuestionnaireActivity" />
+        <activity android:name=".Activity.main.menu.common_items.ProfileClientActivity" />
+        <activity android:name=".Activity.main.menu.client_menu_items.FindActivity"></activity>
     </application>
 
 </manifest>

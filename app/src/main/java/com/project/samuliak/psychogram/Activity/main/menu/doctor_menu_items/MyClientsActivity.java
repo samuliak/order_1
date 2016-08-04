@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Adapter.MyClientsAdapter;
 import com.project.samuliak.psychogram.Model.Client;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Utils;
 
@@ -34,7 +34,7 @@ import retrofit2.Response;
 public class MyClientsActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private static Psychogolist doctor;
+    private static Psychologist doctor;
     private static PsychogolistAPI service;
     private static ProgressDialog progressDialog;
     private ViewPager mViewPager;
@@ -61,7 +61,7 @@ public class MyClientsActivity extends AppCompatActivity {
         service = Utils.getRetrofit().create(PsychogolistAPI.class);
         progressDialog = new ProgressDialog(this);
         Utils.initProgressDialog(progressDialog, this);
-        doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());
+        doctor = getIntent().getExtras().getParcelable(Psychologist.class.getCanonicalName());
     }
 
     public static class PlaceholderFragment extends Fragment {
@@ -90,7 +90,7 @@ public class MyClientsActivity extends AppCompatActivity {
                     public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
                         if (response.isSuccessful()){
                             MyClientsAdapter adapter = new MyClientsAdapter(getContext(), response.body(),
-                                    false);
+                                    false, doctor.getLogin());
                             rv.setAdapter(adapter);
                             rv.setLayoutManager(new LinearLayoutManager(getContext()));
                         }
@@ -111,7 +111,7 @@ public class MyClientsActivity extends AppCompatActivity {
                     public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
                         if (response.isSuccessful()){
                             MyClientsAdapter adapter = new MyClientsAdapter(getContext(), response.body(),
-                                    true);
+                                    true, doctor.getLogin());
                             rv.setAdapter(adapter);
                             rv.setLayoutManager(new LinearLayoutManager(getContext()));
                         }

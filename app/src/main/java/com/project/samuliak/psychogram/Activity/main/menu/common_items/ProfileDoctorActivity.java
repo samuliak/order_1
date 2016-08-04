@@ -6,13 +6,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 
 public class ProfileDoctorActivity extends AppCompatActivity {
 
-    private Psychogolist doctor;
-    private boolean isClientLook;
+    private Psychologist doctor;
+    private boolean isClientLook, isOwnProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,12 @@ public class ProfileDoctorActivity extends AppCompatActivity {
         // Первая переменная - смотрит ли клиент. И вторая - власная ли это страница
         ImageButton btnSend = (ImageButton) findViewById(R.id.btnSend);
         if (data != null) {
-            doctor = data.getParcelable(Psychogolist.class.getCanonicalName());
+            doctor = data.getParcelable(Psychologist.class.getCanonicalName());
             if (doctor != null){
                 initUI();
             }
             isClientLook = data.getBoolean("IS_CLIENT_LOOK");
+            isOwnProfile = data.getBoolean("IS_OWN_ACCOUNT");
             if (isClientLook){
                 assert btnSend != null;
                 btnSend.setClickable(true);

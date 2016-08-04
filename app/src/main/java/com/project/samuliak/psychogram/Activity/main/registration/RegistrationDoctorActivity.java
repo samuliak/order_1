@@ -16,26 +16,23 @@ import com.project.samuliak.psychogram.API.ClientAPI;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Activity.main.authornization.AuthorizationActivity;
 import com.project.samuliak.psychogram.Model.Client;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
-import com.project.samuliak.psychogram.Util.Constants;
 import com.project.samuliak.psychogram.Util.Utils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistrationDoctorActivity extends AppCompatActivity {
 
     private TextInputLayout loginRegIL, passwordRegIL, nameRegIL, surnameRegIL, direction_of_workRegIL;
     private TextView loginRegistr, passwordRegistr, nameRegistr, surnameRegistr, ageRegistr,
-            countryRegistr, cityRegistr, interestRegistr, place_of_workRegistr, universityRegistr,
+            countryRegistr, cityRegistr, interestRegistr, prof_interestRegistr, place_of_workRegistr, universityRegistr,
             specializationRegistr, competenceRegistr, direction_of_workRegistr;
     private Button btnReg;
-    private String login, password, name, surname, country, city, interest, place_of_work,
-                university, specialization, competence, direction;
+    private String login, password, name, surname, country, city, interest, prof_interest,
+            place_of_work, university, specialization, competence, direction;
     private int age;
 
     @Override
@@ -62,6 +59,7 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
         country = countryRegistr.getText().toString();
         city = cityRegistr.getText().toString();
         interest = interestRegistr.getText().toString();
+        prof_interest = prof_interestRegistr.getText().toString();
         place_of_work = place_of_workRegistr.getText().toString();
         university = universityRegistr.getText().toString();
         specialization = specializationRegistr.getText().toString();
@@ -86,6 +84,7 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
         countryRegistr = (TextView) findViewById(R.id.countryRegistr);
         cityRegistr = (TextView) findViewById(R.id.cityRegistr);
         interestRegistr = (TextView) findViewById(R.id.interestRegistr);
+        prof_interestRegistr = (TextView) findViewById(R.id.prof_interestRegistr);
         place_of_workRegistr = (TextView) findViewById(R.id.place_of_workRegistr);
         universityRegistr = (TextView) findViewById(R.id.universityRegistr);
         specializationRegistr = (TextView) findViewById(R.id.specializationRegistr);
@@ -140,8 +139,8 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
         PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
         ClientAPI proverkaService = Utils.getRetrofit().create(ClientAPI.class);
 
-        final Psychogolist doctor = new Psychogolist(login, name, surname, password, age,
-                country, city, interest, place_of_work, university, specialization,
+        final Psychologist doctor = new Psychologist(login, name, surname, password, age,
+                country, city, interest, prof_interest, place_of_work, university, specialization,
                 competence, direction);
 //        if(circleImageView.getBackground() != null)
 //            user.setImage(Utils.drawableToBitmap(circleImageView.getBackground()));
@@ -171,7 +170,7 @@ public class RegistrationDoctorActivity extends AppCompatActivity {
                             clearUI();
                             Intent i = new Intent(getBaseContext(), AuthorizationActivity.class);
                             Bundle bundle = new Bundle();
-                            bundle.putParcelable(Psychogolist.class.getCanonicalName(), doctor);
+                            bundle.putParcelable(Psychologist.class.getCanonicalName(), doctor);
                             i.putExtras(bundle);
                             i.putExtra("TYPE", "Doctor");
                             startActivity(i);

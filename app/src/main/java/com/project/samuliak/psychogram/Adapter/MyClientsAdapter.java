@@ -1,8 +1,8 @@
 package com.project.samuliak.psychogram.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
+import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileClientActivity;
 import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.R;
-import com.project.samuliak.psychogram.Util.Constants;
 import com.project.samuliak.psychogram.Util.Utils;
 
 import java.util.List;
@@ -22,30 +22,32 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.ViewHolder> {
     private List<Client> list;
+    private String doctor_login;
     private Context context;
-    private boolean CODE;
+    private boolean is_potencial_list;
     private boolean ex;
     private PsychogolistAPI service;
 
-    public MyClientsAdapter(Context context, List<Client> list, boolean CODE) {
+    public MyClientsAdapter(Context context, List<Client> list, boolean is_potencial_list, String doctor) {
         this.context = context;
         this.list = list;
-        this.CODE = CODE;
+        this.is_potencial_list = is_potencial_list;
         this.ex = false;
+        this.doctor_login = doctor;
         service = Utils.getRetrofit().create(PsychogolistAPI.class);
     }
 
-    public MyClientsAdapter(Context context, List<Client> list, boolean CODE, boolean ex) {
+    public MyClientsAdapter(Context context, List<Client> list, boolean is_potencial_list, boolean ex,
+                            String doctor) {
         this.context = context;
         this.list = list;
-        this.CODE = CODE;
+        this.is_potencial_list = is_potencial_list;
         this.ex = ex;
-        Log.e("samuliak", "MyClientsAdapter ex. ");
+        this.doctor_login = doctor;
+        service = Utils.getRetrofit().create(PsychogolistAPI.class);
     }
 
 
@@ -90,7 +92,17 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
         vh.place_of_live.setText(client.getCountry()+", "+client.getCity());
         vh.interest.setText(client.getInterest());
 
-        if (CODE) {
+        vh.btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), ProfileClientActivity.class);
+                i.putExtra(Client.class.getCanonicalName(), list.get(position));
+                i.putExtra("doctor", doctor_login);
+                v.getContext().startActivity(i);
+            }
+        });
+
+        if (is_potencial_list) {
             vh.btnAgree.setVisibility(View.VISIBLE);
             vh.btnAgree.setClickable(true);
         }
@@ -105,6 +117,8 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
                             if (response.isSuccessful()) {
                                 vh.btnDelete.setText(R.string.deleted);
                                 vh.btnDelete.setBackgroundResource(R.drawable.btn_delete);
+                                list.remove(list.get(position));
+                                notifyDataSetChanged();
                             }
                         }
 

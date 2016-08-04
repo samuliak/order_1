@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Adapter.FriendsAdapter;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Utils;
 
@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class FriendActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private static Psychogolist doctor;
+    private static Psychologist doctor;
 
     private ViewPager mViewPager;
 
@@ -41,7 +41,7 @@ public class FriendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend);
-        doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());
+        doctor = getIntent().getExtras().getParcelable(Psychologist.class.getCanonicalName());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -78,12 +78,12 @@ public class FriendActivity extends AppCompatActivity {
             if (doctor != null){
                 PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
                 if(getArguments().getInt("page") == 1) {
-                    Call<List<Psychogolist>> call = service.getAllFriendsByLogin(doctor.getLogin());
+                    Call<List<Psychologist>> call = service.getAllFriendsByLogin(doctor.getLogin());
                     final ProgressDialog progressDialog = new ProgressDialog(rootView.getContext());
                     Utils.initProgressDialog(progressDialog, rootView.getContext());
-                    call.enqueue(new Callback<List<Psychogolist>>() {
+                    call.enqueue(new Callback<List<Psychologist>>() {
                         @Override
-                        public void onResponse(Call<List<Psychogolist>> call, Response<List<Psychogolist>> response) {
+                        public void onResponse(Call<List<Psychologist>> call, Response<List<Psychologist>> response) {
                             if (response.isSuccessful()) {
                                 FriendsAdapter adapter = new FriendsAdapter(getContext(), response.body(),
                                         true, doctor, 1);
@@ -94,18 +94,18 @@ public class FriendActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<List<Psychogolist>> call, Throwable t) {
+                        public void onFailure(Call<List<Psychologist>> call, Throwable t) {
                             Toast.makeText(getContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
                     });
                 } else if (getArguments().getInt("page") == 2){
-                    Call<List<Psychogolist>> call = service.getAllFriendsInputRequestByLogin(doctor.getLogin());
+                    Call<List<Psychologist>> call = service.getAllFriendsInputRequestByLogin(doctor.getLogin());
                     final ProgressDialog progressDialog = new ProgressDialog(rootView.getContext());
                     Utils.initProgressDialog(progressDialog, rootView.getContext());
-                    call.enqueue(new Callback<List<Psychogolist>>() {
+                    call.enqueue(new Callback<List<Psychologist>>() {
                         @Override
-                        public void onResponse(Call<List<Psychogolist>> call, Response<List<Psychogolist>> response) {
+                        public void onResponse(Call<List<Psychologist>> call, Response<List<Psychologist>> response) {
                             if (response.isSuccessful()) {
                                 FriendsAdapter adapter = new FriendsAdapter(getContext(), response.body(),
                                         false, doctor, 2);
@@ -116,18 +116,18 @@ public class FriendActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<List<Psychogolist>> call, Throwable t) {
+                        public void onFailure(Call<List<Psychologist>> call, Throwable t) {
                             Toast.makeText(getContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
                     });
                 } else if (getArguments().getInt("page") == 3){
-                    Call<List<Psychogolist>> call = service.getAllFriendsOutputRequest(doctor.getLogin());
+                    Call<List<Psychologist>> call = service.getAllFriendsOutputRequest(doctor.getLogin());
                     final ProgressDialog progressDialog = new ProgressDialog(rootView.getContext());
                     Utils.initProgressDialog(progressDialog, rootView.getContext());
-                    call.enqueue(new Callback<List<Psychogolist>>() {
+                    call.enqueue(new Callback<List<Psychologist>>() {
                         @Override
-                        public void onResponse(Call<List<Psychogolist>> call, Response<List<Psychogolist>> response) {
+                        public void onResponse(Call<List<Psychologist>> call, Response<List<Psychologist>> response) {
                             if (response.isSuccessful()) {
                                 FriendsAdapter adapter = new FriendsAdapter(getContext(), response.body(),
                                         false, doctor, 3);
@@ -138,7 +138,7 @@ public class FriendActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<List<Psychogolist>> call, Throwable t) {
+                        public void onFailure(Call<List<Psychologist>> call, Throwable t) {
                             Toast.makeText(getContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }

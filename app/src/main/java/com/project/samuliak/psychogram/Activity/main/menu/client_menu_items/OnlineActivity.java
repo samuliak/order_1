@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Adapter.OnlineAdapter;
 import com.project.samuliak.psychogram.Model.Client;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Utils;
 
@@ -37,10 +37,10 @@ public class OnlineActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         Utils.initProgressDialog(progressDialog, this);
         PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
-        Call<List<Psychogolist>> call = service.getAllDoctorWhoIsOnline();
-        call.enqueue(new Callback<List<Psychogolist>>() {
+        Call<List<Psychologist>> call = service.getAllDoctorWhoIsOnline();
+        call.enqueue(new Callback<List<Psychologist>>() {
             @Override
-            public void onResponse(Call<List<Psychogolist>> call, Response<List<Psychogolist>> response) {
+            public void onResponse(Call<List<Psychologist>> call, Response<List<Psychologist>> response) {
                 if (response.isSuccessful()){
                     OnlineAdapter adapter = new OnlineAdapter(getBaseContext(), response.body());
                     rv.setAdapter(adapter);
@@ -50,7 +50,7 @@ public class OnlineActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Psychogolist>> call, Throwable t) {
+            public void onFailure(Call<List<Psychologist>> call, Throwable t) {
                 Toast.makeText(getBaseContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
             }

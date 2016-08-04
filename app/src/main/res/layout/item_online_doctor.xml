@@ -11,11 +11,12 @@
         android:layout_margin="10dp">
 
         <ImageView
+            android:id="@+id/indicator"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/indicator_circle_green"/>
+            android:background="@drawable/indicator_circle_green" />
 
         <ImageView
             android:id="@+id/on_icon"

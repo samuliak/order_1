@@ -14,12 +14,12 @@ import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.Frie
 import com.project.samuliak.psychogram.Activity.main.menu.doctor_menu_items.MyClientsActivity;
 import com.project.samuliak.psychogram.Adapter.MenuAdapter;
 import com.project.samuliak.psychogram.Listener.RecyclerClickListener;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 
 public class MainDoctorActivity extends AppCompatActivity {
 
-    private Psychogolist doctor;
+    private Psychologist doctor;
     private RecyclerView menuRV;
     private String[] items = new String[9];
 
@@ -31,7 +31,7 @@ public class MainDoctorActivity extends AppCompatActivity {
     }
 
     private void initActivity() {
-        doctor = getIntent().getExtras().getParcelable(Psychogolist.class.getCanonicalName());
+        doctor = getIntent().getExtras().getParcelable(Psychologist.class.getCanonicalName());
         initUI();
         MenuAdapter adapter = new MenuAdapter(items);
         menuRV.setAdapter(adapter);
@@ -44,35 +44,35 @@ public class MainDoctorActivity extends AppCompatActivity {
                         switch (position){
                             case 0:
                                 i = new Intent(view.getContext(), MyClientsActivity.class);
-                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                i.putExtra(Psychologist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
                             case 1:
                                 break;
                             case 2:
                                 i = new Intent(view.getContext(), ExClientsActivity.class);
-                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                i.putExtra(Psychologist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
                             case 3:
                                 break;
                             case 4:
                                 i = new Intent(view.getContext(), DialogActivity.class);
-                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                i.putExtra(Psychologist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
                             case 5:
                                 i = new Intent(view.getContext(), ProfileDoctorActivity.class);
                                 i.putExtra("IS_CLIENT_LOOK", false);
                                 i.putExtra("IS_OWN_ACCOUNT", true);
-                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                i.putExtra(Psychologist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
                             case 6:
                                 break;
                             case 7:
                                 i = new Intent(view.getContext(), FriendActivity.class);
-                                i.putExtra(Psychogolist.class.getCanonicalName(), doctor);
+                                i.putExtra(Psychologist.class.getCanonicalName(), doctor);
                                 startActivity(i);
                                 break;
                             case 8:

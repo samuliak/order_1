@@ -96,5 +96,6 @@
     <string name="forward">Вперед</string>
     <string name="questionnaire_refreshed">Анкету оновлено!</string>
     <string name="questionnaire_error">Ошибка при оновление анкеты!</string>
+    <string name="search">Искать</string>
 
 </resources>

@@ -3,7 +3,6 @@ package com.project.samuliak.psychogram.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileDoctorActivity;
-import com.project.samuliak.psychogram.Model.Psychogolist;
+import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Utils;
 
@@ -25,13 +24,13 @@ import retrofit2.Response;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder>{
 
-    private List<Psychogolist> list;
+    private List<Psychologist> list;
     private Context context;
     private boolean FRIEND;
-    private Psychogolist doctor;
+    private Psychologist doctor;
     private int request;
 
-    public FriendsAdapter(Context context, List<Psychogolist> list, boolean FRIEND, Psychogolist doctor, int i){
+    public FriendsAdapter(Context context, List<Psychologist> list, boolean FRIEND, Psychologist doctor, int i){
         this.context = context;
         this.list = list;
         this.FRIEND = FRIEND;
@@ -102,7 +101,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
                     Intent i = new Intent(context, ProfileDoctorActivity.class);
                     i.putExtra("IS_CLIENT_LOOK", false);
                     i.putExtra("IS_OWN_ACCOUNT", false);
-                    i.putExtra(Psychogolist.class.getCanonicalName(), list.get(id));
+                    i.putExtra(Psychologist.class.getCanonicalName(), list.get(id));
                     context.startActivity(i);
                 }
             });

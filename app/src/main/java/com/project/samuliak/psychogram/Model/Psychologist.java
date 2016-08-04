@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Psychogolist implements Parcelable{
+public class Psychologist implements Parcelable{
 
     @SerializedName("login")
     @Expose
@@ -32,6 +32,9 @@ public class Psychogolist implements Parcelable{
     @SerializedName("interest")
     @Expose
     private String interest;
+    @SerializedName("prof_interest")
+    @Expose
+    private String prof_interest;
     @SerializedName("place_of_work")
     @Expose
     private String placeOfWork;
@@ -54,12 +57,12 @@ public class Psychogolist implements Parcelable{
     @Expose
     private Integer id;
 
-    public Psychogolist(){}
+    public Psychologist(){}
 
-    public Psychogolist(String login, String name, String surname, String password,
+    public Psychologist(String login, String name, String surname, String password,
                         Integer age, String country, String city, String interest,
-                        String placeOfWork, String university, String specialization,
-                        String competence, String directionOfWork) {
+                        String prof_interest, String placeOfWork, String university,
+                        String specialization, String competence, String directionOfWork) {
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -68,6 +71,7 @@ public class Psychogolist implements Parcelable{
         this.country = country;
         this.city = city;
         this.interest = interest;
+        this.prof_interest = prof_interest;
         this.placeOfWork = placeOfWork;
         this.university = university;
         this.specialization = specialization;
@@ -75,7 +79,7 @@ public class Psychogolist implements Parcelable{
         this.directionOfWork = directionOfWork;
     }
 
-    protected Psychogolist(Parcel in) {
+    protected Psychologist(Parcel in) {
         login = in.readString();
         name = in.readString();
         surname = in.readString();
@@ -90,15 +94,15 @@ public class Psychogolist implements Parcelable{
         directionOfWork = in.readString();
     }
 
-    public static final Creator<Psychogolist> CREATOR = new Creator<Psychogolist>() {
+    public static final Creator<Psychologist> CREATOR = new Creator<Psychologist>() {
         @Override
-        public Psychogolist createFromParcel(Parcel in) {
-            return new Psychogolist(in);
+        public Psychologist createFromParcel(Parcel in) {
+            return new Psychologist(in);
         }
 
         @Override
-        public Psychogolist[] newArray(int size) {
-            return new Psychogolist[size];
+        public Psychologist[] newArray(int size) {
+            return new Psychologist[size];
         }
     };
 
@@ -148,6 +152,14 @@ public class Psychogolist implements Parcelable{
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getProf_interest() {
+        return prof_interest;
+    }
+
+    public void setProf_interest(String prof_interest) {
+        this.prof_interest = prof_interest;
     }
 
     public String getCity() {
