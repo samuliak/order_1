@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -19,12 +19,11 @@ import android.widget.Toast;
 
 import com.project.samuliak.psychogram.API.PsychogolistAPI;
 import com.project.samuliak.psychogram.Adapter.OnlineAdapter;
+import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Utils;
-import com.transitionseverywhere.AutoTransition;
 import com.transitionseverywhere.ChangeBounds;
-import com.transitionseverywhere.Fade;
 import com.transitionseverywhere.Recolor;
 import com.transitionseverywhere.Scene;
 import com.transitionseverywhere.TransitionManager;
@@ -39,6 +38,7 @@ import retrofit2.Response;
 
 public class FindActivity extends AppCompatActivity {
 
+    private Client client;
     private ViewGroup container;
     private FrameLayout container_empty;
     private boolean visible;
@@ -58,6 +58,7 @@ public class FindActivity extends AppCompatActivity {
 
     private void initAct() {
         service = Utils.getRetrofit().create(PsychogolistAPI.class);
+        client = getIntent().getExtras().getParcelable(Client.class.getCanonicalName());
         progressDialog = new ProgressDialog(this);
         list = new ArrayList<>();
         rv_simple = (RecyclerView) findViewById(R.id.rv_simple_doctor);
@@ -69,7 +70,7 @@ public class FindActivity extends AppCompatActivity {
             public void onResponse(Call<List<Psychologist>> call, Response<List<Psychologist>> response) {
                 if(response.isSuccessful()) {
                     list = response.body();
-                    adapter = new OnlineAdapter(getBaseContext(), list, true);
+                    adapter = new OnlineAdapter(getBaseContext(), list, true, client);
                     rv_simple.setAdapter(adapter);
                     rv_simple.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 }
@@ -116,13 +117,20 @@ public class FindActivity extends AppCompatActivity {
             }
 
             private void connectToServer() {
+                String[] str = getResources().getStringArray(R.array.interes_array);
+                ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(getBaseContext(),
+                        android.R.layout.simple_dropdown_item_1line, str);
+                AutoCompleteTextView textView = (AutoCompleteTextView)
+                        scene2.getSceneRoot().findViewById(R.id.competence);
+                textView.setAdapter(stringArrayAdapter);
+
                 Button start_find = (Button) scene2.getSceneRoot().findViewById(R.id.start_find);
                 start_find.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String country = ((EditText) scene2.getSceneRoot().findViewById(R.id.country)).getText().toString();
                         String city = ((EditText) scene2.getSceneRoot().findViewById(R.id.city)).getText().toString();
-                        String competence = ((EditText) scene2.getSceneRoot().findViewById(R.id.competence)).getText().toString();
+                        String competence = ((AutoCompleteTextView) scene2.getSceneRoot().findViewById(R.id.competence)).getText().toString();
                         Utils.initProgressDialog(progressDialog, v.getContext());
                         Call<List<Psychologist>> call = service.getAllPsychologistByParameters(country, city, competence);
                         call.enqueue(new Callback<List<Psychologist>>() {
@@ -134,7 +142,7 @@ public class FindActivity extends AppCompatActivity {
                                         rv_simple.removeAllViews();
                                         container_empty.removeAllViews();
                                         list = response.body();
-                                        adapter = new OnlineAdapter(getBaseContext(), list, true);
+                                        adapter = new OnlineAdapter(getBaseContext(), list, true, client);
                                         rv_simple.setAdapter(adapter);
                                         rv_simple.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                                     } else {

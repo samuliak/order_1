@@ -39,7 +39,7 @@
         android:layout_margin="5dp"
         android:layout_below="@+id/city_il">
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/competence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

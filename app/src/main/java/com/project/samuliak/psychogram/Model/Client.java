@@ -20,9 +20,12 @@ public class Client implements Parcelable {
     @SerializedName("password")
     @Expose
     public String password;
-    @SerializedName("age")
+    @SerializedName("birthday")
     @Expose
-    public Integer age;
+    public String birthday;
+    @SerializedName("sex")
+    @Expose
+    public String sex;
     @SerializedName("country")
     @Expose
     public String country;
@@ -36,24 +39,30 @@ public class Client implements Parcelable {
     @Expose
     public Integer id;
 
-    public Client(){}
+    public Client() {}
 
-    public Client(String login, String name, String surname, String password, Integer age, String country, String city, String interest) {
+    public Client(String login, String name, String surname,
+                  String password, String birthday, String sex,
+                  String country, String city, String interest) {
         this.login = login;
         this.name = name;
         this.surname = surname;
         this.password = password;
-        this.age = age;
+        this.birthday = birthday;
+        this.sex = sex;
         this.country = country;
         this.city = city;
         this.interest = interest;
     }
+
 
     protected Client(Parcel in) {
         login = in.readString();
         name = in.readString();
         surname = in.readString();
         password = in.readString();
+        birthday = in.readString();
+        sex = in.readString();
         country = in.readString();
         city = in.readString();
         interest = in.readString();
@@ -71,12 +80,12 @@ public class Client implements Parcelable {
         }
     };
 
-    public Integer getId() {
-        return id;
+    public String getLogin() {
+        return login;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getName() {
@@ -103,12 +112,20 @@ public class Client implements Parcelable {
         this.password = password;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getCountry() {
@@ -135,12 +152,12 @@ public class Client implements Parcelable {
         this.interest = interest;
     }
 
-    public String getLogin() {
-        return login;
+    public Integer getId() {
+        return id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -154,6 +171,8 @@ public class Client implements Parcelable {
         dest.writeString(name);
         dest.writeString(surname);
         dest.writeString(password);
+        dest.writeString(birthday);
+        dest.writeString(sex);
         dest.writeString(country);
         dest.writeString(city);
         dest.writeString(interest);

@@ -10,83 +10,92 @@ public class Psychologist implements Parcelable{
 
     @SerializedName("login")
     @Expose
-    private String login;
+    public String login;
     @SerializedName("name")
     @Expose
-    private String name;
+    public String name;
     @SerializedName("surname")
     @Expose
-    private String surname;
+    public String surname;
     @SerializedName("password")
     @Expose
-    private String password;
-    @SerializedName("age")
+    public String password;
+    @SerializedName("experience")
     @Expose
-    private Integer age;
+    public Integer experience;
+    @SerializedName("sex")
+    @Expose
+    public String sex;
+    @SerializedName("birthday")
+    @Expose
+    public String birthday;
     @SerializedName("country")
     @Expose
-    private String country;
+    public String country;
     @SerializedName("city")
     @Expose
-    private String city;
-    @SerializedName("interest")
-    @Expose
-    private String interest;
+    public String city;
     @SerializedName("prof_interest")
     @Expose
-    private String prof_interest;
+    public String profInterest;
     @SerializedName("place_of_work")
     @Expose
-    private String placeOfWork;
+    public String placeOfWork;
     @SerializedName("university")
     @Expose
-    private String university;
+    public String university;
     @SerializedName("specialization")
     @Expose
-    private String specialization;
+    public String specialization;
     @SerializedName("competence")
     @Expose
-    private String competence;
+    public String competence;
     @SerializedName("direction_of_work")
     @Expose
-    private String directionOfWork;
+    public String directionOfWork;
     @SerializedName("online")
     @Expose
-    private Boolean online;
+    public Boolean online;
     @SerializedName("id")
     @Expose
-    private Integer id;
+    public Integer id;
 
-    public Psychologist(){}
+    public Psychologist() {
+    }
 
     public Psychologist(String login, String name, String surname, String password,
-                        Integer age, String country, String city, String interest,
-                        String prof_interest, String placeOfWork, String university,
+                        Integer experience, String sex, String birthday, String country,
+                        String city, String profInterest, String placeOfWork, String university,
                         String specialization, String competence, String directionOfWork) {
         this.login = login;
         this.name = name;
         this.surname = surname;
         this.password = password;
-        this.age = age;
+        this.experience = experience;
+        this.sex = sex;
+        this.birthday = birthday;
         this.country = country;
         this.city = city;
-        this.interest = interest;
-        this.prof_interest = prof_interest;
+        this.profInterest = profInterest;
         this.placeOfWork = placeOfWork;
         this.university = university;
         this.specialization = specialization;
         this.competence = competence;
         this.directionOfWork = directionOfWork;
+        this.online = false;
     }
+
 
     protected Psychologist(Parcel in) {
         login = in.readString();
         name = in.readString();
         surname = in.readString();
         password = in.readString();
+        sex = in.readString();
+        birthday = in.readString();
         country = in.readString();
         city = in.readString();
-        interest = in.readString();
+        profInterest = in.readString();
         placeOfWork = in.readString();
         university = in.readString();
         specialization = in.readString();
@@ -138,12 +147,28 @@ public class Psychologist implements Parcelable{
         this.password = password;
     }
 
-    public Integer getAge() {
-        return age;
+    public Integer getExperience() {
+        return experience;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getCountry() {
@@ -154,14 +179,6 @@ public class Psychologist implements Parcelable{
         this.country = country;
     }
 
-    public String getProf_interest() {
-        return prof_interest;
-    }
-
-    public void setProf_interest(String prof_interest) {
-        this.prof_interest = prof_interest;
-    }
-
     public String getCity() {
         return city;
     }
@@ -170,12 +187,12 @@ public class Psychologist implements Parcelable{
         this.city = city;
     }
 
-    public String getInterest() {
-        return interest;
+    public String getProfInterest() {
+        return profInterest;
     }
 
-    public void setInterest(String interest) {
-        this.interest = interest;
+    public void setProfInterest(String profInterest) {
+        this.profInterest = profInterest;
     }
 
     public String getPlaceOfWork() {
@@ -234,6 +251,7 @@ public class Psychologist implements Parcelable{
         this.id = id;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -245,9 +263,11 @@ public class Psychologist implements Parcelable{
         dest.writeString(name);
         dest.writeString(surname);
         dest.writeString(password);
+        dest.writeString(sex);
+        dest.writeString(birthday);
         dest.writeString(country);
         dest.writeString(city);
-        dest.writeString(interest);
+        dest.writeString(profInterest);
         dest.writeString(placeOfWork);
         dest.writeString(university);
         dest.writeString(specialization);

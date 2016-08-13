@@ -23,6 +23,8 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
+
+
 }
 
 dependencies {
@@ -52,4 +54,9 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    // ВК АПИ
+    compile 'com.vk:androidsdk:1.6.7'
+
+    compile project(path: ':slideDateTimePicker')
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

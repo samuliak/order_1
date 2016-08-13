@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.samuliak.psychogram.Activity.main.menu.common_items.ProfileDoctorActivity;
+import com.project.samuliak.psychogram.Model.Client;
 import com.project.samuliak.psychogram.Model.Psychologist;
 import com.project.samuliak.psychogram.R;
 
@@ -20,19 +21,22 @@ import java.util.List;
 public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder>{
 
     private List<Psychologist> list;
+    private Client client;
     private Context context;
     private boolean is_find;
 
-    public OnlineAdapter(Context context, List<Psychologist> list){
+    public OnlineAdapter(Context context, List<Psychologist> list, Client client){
         this.context = context;
         this.list = list;
         is_find = false;
+        this.client = client;
     }
 
-    public OnlineAdapter(Context context, List<Psychologist> list, boolean find){
+    public OnlineAdapter(Context context, List<Psychologist> list, boolean find, Client client){
         this.context = context;
         this.list = list;
         is_find = find;
+        this.client = client;
     }
 
     @Override
@@ -56,6 +60,7 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
                 i.putExtra("IS_CLIENT_LOOK", true);
                 i.putExtra("IS_OWN_ACCOUNT", false);
                 i.putExtra(Psychologist.class.getCanonicalName(), list.get(position));
+                i.putExtra(Client.class.getCanonicalName(), client);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }

@@ -42,7 +42,7 @@ public class OnlineActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Psychologist>> call, Response<List<Psychologist>> response) {
                 if (response.isSuccessful()){
-                    OnlineAdapter adapter = new OnlineAdapter(getBaseContext(), response.body());
+                    OnlineAdapter adapter = new OnlineAdapter(getBaseContext(), response.body(), client);
                     rv.setAdapter(adapter);
                     rv.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 }

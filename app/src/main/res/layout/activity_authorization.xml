@@ -51,24 +51,6 @@
                 android:hint="@string/password"/>
         </android.support.design.widget.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <CheckBox
-                android:id="@+id/autoSign"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/auto_sign"
-                android:enabled="false"/>
-            <CheckBox
-                android:id="@+id/saveInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save_in_preferences" />
-
-        </LinearLayout>
-
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnLogIn"
             android:layout_width="match_parent"

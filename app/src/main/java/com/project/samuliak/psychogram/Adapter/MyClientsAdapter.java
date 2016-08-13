@@ -85,8 +85,8 @@ public class MyClientsAdapter extends RecyclerView.Adapter<MyClientsAdapter.View
         StringBuilder str = new StringBuilder();
         str.append(client.getSurname()).append(" ");
         str.append(client.getName()).append(",     ");
-        if (client.getAge().toString().length() > 0)
-            str.append(String.valueOf(client.getAge()));
+        if (client.getBirthday().toString().length() > 0)
+            str.append(String.valueOf(client.getBirthday()));
         vh.icon.setImageResource(R.drawable.client);
         vh.name.setText(str);
         vh.place_of_live.setText(client.getCountry()+", "+client.getCity());

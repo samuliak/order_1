@@ -3,7 +3,7 @@
     <string name="sign">или авторизоваться</string>
     <string name="client">Клиент</string>
     <string name="doctor">Психолог</string>
-    <string name="registration">Зарегистрироваться как … </string>
+    <string name="preview">Добро пожаловать в место, где собираются лучшие психологи</string>
     <string name="registr">Зарегистрироватся</string>
     <string name="nickname">Логин</string>
     <string name="password">Пароль</string>
@@ -30,8 +30,9 @@
     <string name="direction_of_work">Направление работы</string>
     <string name="age">Возвраст</string>
 
-    <string name="fill_all_fields">Заполните поля</string>
+    <string name="registration_new_doctor">Регистрация нового психолога</string>
     <string name="fill_the_field">Заполните поле!</string>
+    <string name="answer_all_quest">Ответьте на все вопросы!</string>
     <string name="unpossible_registred">Ошибка при регистрации!</string>
 
     <string name="my_clients">Мои клиенты</string>
@@ -63,7 +64,7 @@
 
     <string name="find_doctor">Поиск психолога</string>
     <string name="who_is_online">Кто сейчас онлайн</string>
-    <string name="everybook">Дневники</string>
+    <string name="everybook">Дневник</string>
     <string name="anketa">Анкета</string>
     <string name="doctor_rules">Кодекс психолога</string>
 
@@ -97,5 +98,192 @@
     <string name="questionnaire_refreshed">Анкету оновлено!</string>
     <string name="questionnaire_error">Ошибка при оновление анкеты!</string>
     <string name="search">Искать</string>
+
+
+    <!-- Компетенции !-->
+    <string name="komp1">Семейная психотерапия</string>
+    <string name="komp2">Психологическая помощь при разводах</string>
+    <string name="komp3">Детский психолог (психотерапевт)</string>
+    <string name="komp4">Герантология</string>
+    <string name="komp5">Психодиагностика</string>
+    <string name="komp6">Бизнес-консультирование</string>
+    <string name="komp7">Оценка персонала</string>
+    <string name="komp8">Психолог в службе образование</string>
+    <string name="komp9">Оценка профессиональной пригодности</string>
+    <string name="komp10">Индивидуальное консультирование</string>
+    <string name="komp11">Работа с людьми с ограниченными возможностями</string>
+    <string name="komp12">Клиническая практика (работа с зависимостями)</string>
+
+
+    <!-- Интересы !-->
+    <string name="comp1">Чтение</string>
+    <string name="comp2">Общение</string>
+    <string name="comp3">Коллекционирование</string>
+    <string name="comp4">Спорт</string>
+    <string name="comp5">Сканворды и кроссворды</string>
+    <string name="comp6">Компьютерные игры</string>
+    <string name="comp7">Азартные игры</string>
+    <string name="comp8">Музыка</string>
+    <string name="comp9">Кино</string>
+    <string name="comp10">Автомобили и мотоциклы</string>
+    <string name="comp11">Интернет</string>
+    <string name="comp12">Фотосъемка</string>
+    <string name="comp13">Нумизматика</string>
+    <string name="comp14">Живопись</string>
+    <string name="comp15">Писательская деятельность</string>
+    <string name="comp16">Фелинология</string>
+    <string name="comp17">Астрология</string>
+    <string name="comp18">Психология</string>
+    <string name="comp19">Стенография</string>
+    <string name="comp20">Дизайн</string>
+    <string name="comp21">Модельные бизнес</string>
+    <string name="comp22">Кулинария</string>
+    <string name="comp23">Паркур</string>
+    <string name="comp24">Хореография</string>
+    <string name="comp25">Програмирование</string>
+    <string name="comp26">Компьютеры</string>
+
+    <string-array name="interes_array">
+        <item> Семейная психотерапия</item>
+        <item>Психологическая помощь при разводах</item>
+        <item>Детский психолог (психотерапевт)</item>
+        <item>Герантология</item>
+        <item>Психодиагностика</item>
+        <item>Бизнес-консультирование</item>
+        <item>Оценка персонала</item>
+        <item>Психолог в службе образование</item>
+        <item>Оценка профессиональной пригодности</item>
+        <item>Индивидуальное консультирование</item>
+        <item>Работа с людьми с ограниченными возможностями</item>
+        <item>Клиническая практика (работа с зависимостями)</item>
+    </string-array>
+
+
+    <!-- Професиональные интересы !-->
+    <string name="inter1">Психоанализ</string>
+    <string name="inter2">Когнитивно-бихевиоральное терапия</string>
+    <string name="inter3">Семейные расстановки по Берту Хеллингеру</string>
+    <string name="inter4">Системно-векторная психология</string>
+    <string name="inter5">Экспериментальная психология</string>
+    <string name="inter6">Гуманистическая психология</string>
+    <string name="inter7">Гештальтппсихология Фрица Перлза</string>
+    <string name="inter8">Экзистенциальная психотерапия</string>
+
+    <string name="birthday">Дата рождение</string>
+    <string name="do_you_consultation">Вам нужна консультация?</string>
+    <string name="yes_preview">ДА</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="no_i_doctor">Нет, я психолог</string>
+    <string name="experience">Стаж</string>
+    <string name="prof_competence">Профессиональные компетенции</string>
+    <string name="prof_interest">Професиональные интересы</string>
+    <string name="man">Мужчина</string>
+    <string name="woman">Женщина</string>
+    <string name="registration_new_user">Регистрация нового пользователя</string>
+
+    <!-- Типы тестов !-->
+    <string name="test1">16-факторный личностный опросник</string>
+    <string name="test2">Индивидуально-типологический опросник</string>
+    <string name="test3">Личностный опросник Айзенка</string>
+    <string name="test4">Методика диагностики межличностных отношений Лири</string>
+    <string name="test5">Методика исследования самоотношения</string>
+    <string name="test6">Модифицированная форма B опросника FPI</string>
+    <string name="test7">Опросник Шмишека</string>
+    <string name="test8">Тест Рокича Ценностные ориентации</string>
+    <string name="test9">Шкала депрессии Бека</string>
+    <string name="question_number">Вопрос #</string>
+    <string name="psychogram">Psychogram©</string>
+    <string name="director">Кравчик Константин</string>
+    <string name="site">Opensocium.net</string>
+
+    <!-- Тест Бека !-->
+    <string-array name="beka_test">
+        <item>Я не чувствую себя расстроенным, печальным.</item>
+        <item>Я расстроен.</item>
+        <item>Я все время расстроен и не могу от этого отключиться.</item>
+        <item>Я настолько расстроен и несчастлив, что не могу это выдержать.</item>
+        <item>Я не тревожусь о своем будущем.</item>
+        <item>Я чувствую, что озадачен будушим.</item>
+        <item>Я чувствую, что меня ничего не ждет в будущем.</item>
+        <item>Мое будущее безнадежно, и ничто не может измениться к лучшему.</item>
+        <item>Я не чувствую себя неудачником.</item>
+        <item>Я чувствую, что терпел больше неудач, чем другие люди.</item>
+        <item>Когда я оглядываюсь на свою жизнь, я вижу в ней много неудач.</item>
+        <item>Я чувствую, что как личность я - полный неудачник.</item>
+        <item>Я получаю столько же удовлетворения от жизни, как раньше.</item>
+        <item>Я не получаю столько же удовлетворения от жизни, как раньше.</item>
+        <item>Я больше не получаю удовлетворения ни от чего.</item>
+        <item>Я полностью не удовлетворен жизнью. и мне все надоело.</item>
+        <item>Я не чувствую себя в чем-нибудь виноватым.</item>
+        <item>Достаточно часто я чувствую себя виноватым.</item>
+        <item>Большую часть времени я чувствую себя виноватым.</item>
+        <item>Я постоянно испытываю чувство вины..</item>
+        <item>Я не чувствую, что могу быть наказанным за что-либо.</item>
+        <item>Я чувствую, что могу быть наказан.</item>
+        <item>Я ожидаю, что могу быть наказан.</item>
+        <item>Я чувствую себя уже наказанным.</item>
+        <item>Я не разочаровался в себе.</item>
+        <item>Я разочаровался в себе.</item>
+        <item>Я себе противен.</item>
+        <item>Я себя ненавижу.</item>
+        <item>Я знаю, что я не хуже других.</item>
+        <item>Я критикую себя за ошибки и слабости.</item>
+        <item>Я все время обвиняю себя за свои поступки.</item>
+        <item>Я виню себя во всем плохом, что происходит.</item>
+        <item>Я никогда не думал покончить с собой.</item>
+        <item>Ко мне приходят мысли покончить с собой, но я не буду их осуществлять.</item>
+        <item>Я хотел бы покончить с собой.</item>
+        <item>Я бы убил себя, если бы представился случай.</item>
+        <item>Я плачу не больше, чем обычно.</item>
+        <item>Сейчас я плачу чаще, чем раньше.</item>
+        <item>Теперь я все время плачу.</item>
+        <item>Раньше я мог плакать, а сейчас не могу, даже если мне хочется.</item>
+        <item>Сейчас я раздражителен не более, чем обычно.</item>
+        <item>Я более легко раздражаюсь, чем раньше.</item>
+        <item>Теперь я постоянно чувствую, что раздражен.</item>
+        <item>Я стал равнодушен к вещам, которые меня раньше раздражали.</item>
+        <item>Я не утратил интереса к другим людям.</item>
+        <item>Я меньше интересуюсь другими людьми, чем раньше.</item>
+        <item>Я почти потерял интерес к другим людям.</item>
+        <item>Я полностью утратил интерес к другим людям.</item>
+        <item>Я откладываю принятие решения иногда, как и раньше.</item>
+        <item>Я чаще, чем раньше, откладываю принятие решения.</item>
+        <item>Мне труднее принимать решения, чем раньше.</item>
+        <item>Я больше не могу принимать решения.</item>
+        <item>Я не чувствую, что выгляжу хуже, чем обычно.</item>
+        <item>Меня тревожит, что я выгляжу старым и непривлекательным.</item>
+        <item>Я знаю, что в моей внешности произошли существенные изменения, делающие меня непривлекательным.</item>
+        <item>Я знаю, что выгляжу безобразно.</item>
+        <item>Я могу работать так же хорошо, как и раньше.</item>
+        <item>Мне необходимо сделать дополнительное усилие, чтобы начать делать что-нибудь.</item>
+        <item>Я с трудом заставляю себя делать что-либо.</item>
+        <item>Я совсем не могу выполнять никакую работу.</item>
+        <item>Я сплю так же хорошо, как и раньше.</item>
+        <item>Сейчас я сплю хуже, чем раньше.</item>
+        <item>Я просыпаюсь на 1–2 часа раньше, и мне трудно заснуть опять.</item>
+        <item>Я просыпаюсь на несколько часов раньше обычного и больше не могу заснуть.</item>
+        <item>Я устаю не больше, чем обычно.</item>
+        <item>Теперь я устаю быстрее, чем раньше.</item>
+        <item>Я устаю почти от всего, что я делаю.</item>
+        <item>Я не могу ничего делать из-за усталости.</item>
+        <item>Мой аппетит не хуже, чем обычно.</item>
+        <item>Мой аппетит стал хуже, чем раньше.</item>
+        <item>Мой аппетит теперь значительно хуже.</item>
+        <item>У меня вообще нет аппетита.</item>
+        <item>В последнее время я не похудел или потеря веса была незначительной.</item>
+        <item>За последнее время я потерял более 2 кг.</item>
+        <item>Я потерял более 5 кг.</item>
+        <item>Я потерял более 7 кr.</item>
+        <item>Я беспокоюсь о своем здоровье не больше, чем обычно.</item>
+        <item>Меня тревожат проблемы моего физического здоровья, такие, как боли, расстройство желудка, запоры и т.д.</item>
+        <item>Я очень обеспокоен своим физическим состоянием, и мне трудно думать о чем-либо другом.</item>
+        <item>Я настолько обеспокоен своим физическим состоянием, что больше ни о чем не могу думать.</item>
+        <item>В последнее время я не замечал изменения своего интереса к сексу.</item>
+        <item>Меня меньше занимают проблемы секса, чем раньше.</item>
+        <item>Сейчас я значительно меньше интересуюсь сексуальными проблемами, чем раньше.</item>
+        <item>Я полностью утратил сексуальный интерес.</item>
+        <item>Я намеренно стараюсь похудеть и ем меньше.</item>
+    </string-array>
 
 </resources>

@@ -1,6 +1,9 @@
 package com.project.samuliak.psychogram.Activity.main.menu.common_items;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +28,7 @@ import com.project.samuliak.psychogram.Model.Message;
 import com.project.samuliak.psychogram.Model.Tab;
 import com.project.samuliak.psychogram.R;
 import com.project.samuliak.psychogram.Util.Utils;
+import com.squareup.okhttp.internal.Util;
 
 import java.lang.reflect.Type;
 import java.util.Date;
@@ -51,10 +55,11 @@ public class CommunicationActivity extends AppCompatActivity {
 
     private void initList() {
         final Tab tab = getIntent().getExtras().getParcelable(Tab.class.getCanonicalName());
+        isDoctor = getIntent().getExtras().getBoolean("is_doctor");
         container = (LinearLayout) findViewById(R.id.error_container);
         final LayoutInflater inflater = getLayoutInflater();
         final View view = inflater.inflate(R.layout.message_is_empty, null);
-        isDoctor = getIntent().getExtras().getBoolean("is_doctor");
+
         final RecyclerView rv_mes = (RecyclerView) findViewById(R.id.rv_mes);
         final TextView textView = (TextView) findViewById(R.id.text_mes);
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -76,6 +81,7 @@ public class CommunicationActivity extends AppCompatActivity {
                     assert rv_mes != null;
                     rv_mes.setAdapter(adapter);
                     rv_mes.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+                    setListenerOnServer();
                 }
                 Log.e("samuliak", "response.message > "+response.message());
                 progressDialog.dismiss();
@@ -113,7 +119,7 @@ public class CommunicationActivity extends AppCompatActivity {
                     local_mes = new Message(text, new Date(), tab.getId(), tab.getClient(), tab.getFull_client());
                     call = service.addMessage(text, tab.getClient(), tab.getFull_client(), tab.getId());
                 }
-
+                Utils.initProgressDialog(progressDialog, getBaseContext());
                 final Message finalLocal_mes = local_mes;
                 call.enqueue(new Callback<Void>() {
                     @Override
@@ -125,11 +131,14 @@ public class CommunicationActivity extends AppCompatActivity {
                             Log.e("samuliak", "succesful!");
                         } else
                             Log.e("samuliak", "not succesful!");
+                        progressDialog.dismiss();
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
                         Log.e("samuliak", "onFailure! > "+t.toString());
+                        Toast.makeText(getBaseContext(), R.string.connecting_error, Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                     }
                 });
             }
@@ -137,5 +146,44 @@ public class CommunicationActivity extends AppCompatActivity {
 
     }
 
+    private void setListenerOnServer() {
+        thread.start();
+    }
 
+
+    Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            final PsychogolistAPI service = Utils.getRetrofit().create(PsychogolistAPI.class);
+            while(true) {
+                assert list != null;
+                if (list != null && list.size() > 0) {
+                    Message last = list.get(list.size() - 1);
+                    Call<List<Message>> call = service.getUpdateMessage(last.getTabId(),
+                            last.getText());
+                    call.enqueue(new Callback<List<Message>>() {
+                        @Override
+                        public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                            if (response.isSuccessful()) {
+                                Log.e("samuliak", "succesful > " + response.body().size());
+                                list.addAll(response.body());
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Message>> call, Throwable t) {
+                            Log.e("samuliak", "onFailure > " + t.toString());
+                        }
+                    });
+
+                    try {
+                        Thread.sleep(15000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    });
 }

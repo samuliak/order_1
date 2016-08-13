@@ -36,7 +36,6 @@ public class AuthorizationActivity extends AppCompatActivity {
     private Client clientBody;
     private TextView loginTv, passwordTv;
     private TextInputLayout loginInputLayout, passwordInputLayout;
-    private CheckBox autoSign, saveInfo;
     private SharedPreferences mSettings;
 
     @Override
@@ -52,8 +51,6 @@ public class AuthorizationActivity extends AppCompatActivity {
         mSettings = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         loginInputLayout = (TextInputLayout) findViewById(R.id.loginInputLayout);
         passwordInputLayout = (TextInputLayout) findViewById(R.id.passwordInputLayout);
-        autoSign = (CheckBox) findViewById(R.id.autoSign);
-        saveInfo = (CheckBox) findViewById(R.id.saveInfo);
         loginTv = (TextView) findViewById(R.id.loginInput);
         passwordTv = (TextView) findViewById(R.id.passwordInput);
         final Button btnLogIn = (Button) findViewById(R.id.btnLogIn);
@@ -64,7 +61,7 @@ public class AuthorizationActivity extends AppCompatActivity {
             Client client;
             String type = bundle.getString("TYPE");
             assert type != null;
-            if (type.equals("Doctor")) {
+            if (type.equals("doctor")) {
                 doctor = bundle.getParcelable(Psychologist.class.getCanonicalName());
                 assert doctor != null;
                 loginTv.setText(doctor.getLogin());
@@ -80,48 +77,33 @@ public class AuthorizationActivity extends AppCompatActivity {
         }else {
             savedUser();
         }
-        saveInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(saveInfo.isChecked() && !autoSign.isEnabled()){
-                    autoSign.setEnabled(true);
-                } else{
-                    autoSign.setChecked(false);
-                    autoSign.setEnabled(false);
-                }
-            }
-        });
 
         assert btnLogIn != null;
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authentication(v);
+                authentication();
             }
         });
+        authentication();
     }
 
     private void savedUser() {
         if (mSettings.contains(Constants.APP_PREFERENCES_ID)) {
             loginTv.setText(mSettings.getString(Constants.APP_PREFERENCES_LOGIN, ""));
             passwordTv.setText(mSettings.getString(Constants.APP_PREFERENCES_PASSWORD, ""));
-            saveInfo.setChecked(true);
-            autoSign.setEnabled(true);
-        } else{
-            saveInfo.setChecked(false);
-            autoSign.setEnabled(false);
         }
     }
 
-    private void authentication(View v) {
+    private void authentication() {
         String login = String.valueOf(loginTv.getText());
         String password = String.valueOf(passwordTv.getText());
         Utils.clearFieldHints(loginInputLayout, passwordInputLayout);
-        if(Utils.isOnline(v.getContext())){
+        if(Utils.isOnline(this)){
             connectionToServer(login, password);
         }else {
             Utils.clearFields(loginTv, passwordTv);
-            Toast.makeText(v.getContext(), R.string.without_internet_access, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.without_internet_access, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -191,23 +173,21 @@ public class AuthorizationActivity extends AppCompatActivity {
     // записываем данные доктора в SharedPreferences если стоить разрешение
     private void setSharedPreferencesAndStartListActivity(){
         SharedPreferences.Editor editor = mSettings.edit();
-        if(saveInfo.isChecked()) {
-            if (doctor == null){
-                editor.putLong(Constants.APP_PREFERENCES_ID, clientBody.getId());
-                editor.putString(Constants.APP_PREFERENCES_LOGIN, clientBody.getLogin());
-                editor.putString(Constants.APP_PREFERENCES_PASSWORD, clientBody.getPassword());
-            }else {
-                editor.putLong(Constants.APP_PREFERENCES_ID, doctor.getId());
-                editor.putString(Constants.APP_PREFERENCES_LOGIN, doctor.getLogin());
-                editor.putString(Constants.APP_PREFERENCES_PASSWORD, doctor.getPassword());
-            }
-            if (autoSign.isChecked())
-                editor.putBoolean(Constants.IS_AUTO_SIGN, true);
-            else editor.putBoolean(Constants.IS_AUTO_SIGN, false);
-            editor.apply();
-        }else{
-            editor.clear();
+
+        if (doctor == null){
+            editor.putLong(Constants.APP_PREFERENCES_ID, clientBody.getId());
+            editor.putString(Constants.APP_PREFERENCES_LOGIN, clientBody.getLogin());
+            editor.putString(Constants.APP_PREFERENCES_PASSWORD, clientBody.getPassword());
+        }else {
+            editor.putLong(Constants.APP_PREFERENCES_ID, doctor.getId());
+            editor.putString(Constants.APP_PREFERENCES_LOGIN, doctor.getLogin());
+            editor.putString(Constants.APP_PREFERENCES_PASSWORD, doctor.getPassword());
         }
+        editor.putBoolean(Constants.IS_AUTO_SIGN, true);
+        editor.apply();
+
+        editor.clear();
+
         Intent i;
         if (doctor == null){
             i = new Intent(getBaseContext(), MainClientActivity.class);

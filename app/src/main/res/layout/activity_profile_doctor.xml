@@ -58,6 +58,14 @@
                 android:layout_height="wrap_content"
                 android:text="32"/>
 
+            <Button
+                android:id="@+id/btn_psych"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:text="@string/psychodiagnostika"/>
+
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

@@ -1,93 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background_type"
     tools:context=".Activity.main.authornization.SelectTypeActivity">
 
-    <TextView
-        android:id="@+id/tv_who_are_you"
+    <com.project.samuliak.psychogram.Util.TextViewPlus
+        android:id="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/registration"
+        android:text="@string/preview"
+        android:textSize="18sp"
+        android:layout_marginTop="75dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        foo:customFont="fonts/MyriadProRegular.ttf"/>
+
+    <com.project.samuliak.psychogram.Util.TextViewPlus
+        android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/do_you_consultation"
+        android:gravity="center_horizontal"
         android:textSize="22sp"
-        android:gravity="center_horizontal"/>
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        foo:customFont="fonts/MyriadProRegular.ttf"/>
+
+    <RelativeLayout
+        android:id="@+id/linear_client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/btn"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <com.project.samuliak.psychogram.Util.TextViewPlus
+            android:id="@+id/text_in_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:text="@string/yes_preview"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            foo:customFont="fonts/MyriadProRegular.ttf"/>
+
+    </RelativeLayout>
+
+
+    <com.project.samuliak.psychogram.Util.TextViewPlus
+        android:id="@+id/doctor_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_i_doctor"
+        android:layout_below="@id/linear_client"
+        android:textSize="18sp"
+        android:layout_marginTop="45dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        foo:customFont="fonts/MyriadProRegular.ttf"/>
+
+    <com.project.samuliak.psychogram.Util.TextViewPlus
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/psychogram"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        foo:customFont="fonts/MyriadProRegular.ttf"/>
 
     <LinearLayout
-        android:id="@+id/ll_from_select_type_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
 
-        <RelativeLayout
-            android:id="@+id/rvDoctor"
-            android:layout_width="match_parent"
+        <com.project.samuliak.psychogram.Util.TextViewPlus
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="40dp"
-            android:paddingTop="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:text="@string/director"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            foo:customFont="fonts/MyriadProRegular.ttf"/>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/doctor"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/doctor"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@+id/doctor"
-                android:text="@string/doctor"/>
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/rvClient"
-            android:layout_width="match_parent"
+        <com.project.samuliak.psychogram.Util.TextViewPlus
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/client"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/client"
-                android:layout_toRightOf="@+id/text"/>
-
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="15dp"
-                android:text="@string/client"/>
-
-        </RelativeLayout>
+            android:text="@string/site"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            foo:customFont="fonts/MyriadProRegular.ttf"/>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_registr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sign"
-        android:textSize="22sp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"/>
 
 </RelativeLayout>

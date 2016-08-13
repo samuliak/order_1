@@ -48,7 +48,24 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.main.menu.client_menu_items.QuestionnaireActivity" />
         <activity android:name=".Activity.main.menu.common_items.ProfileClientActivity" />
-        <activity android:name=".Activity.main.menu.client_menu_items.FindActivity"></activity>
+        <activity android:name=".Activity.main.menu.client_menu_items.FindActivity" />
+
+        <service
+            android:name=".Util.MessageService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".Activity.main.menu.client_menu_items.tests.PsychognosisActivity" />
+        <activity android:name=".Activity.main.menu.client_menu_items.DiagnostikMenuActivity" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".Activity.main.menu.client_menu_items.tests.BekaTestActivity"></activity>
     </application>
 
 </manifest>

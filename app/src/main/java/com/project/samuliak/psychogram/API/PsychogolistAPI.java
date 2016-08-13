@@ -7,11 +7,15 @@ import com.project.samuliak.psychogram.Model.Tab;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface PsychogolistAPI {
@@ -74,6 +78,11 @@ public interface PsychogolistAPI {
     @POST("tab/client{login}")
     Call<List<Tab>> getAllTabsByClient(@Path("login") String login);
 
+    // найти таб по логинам
+    @POST("tab/client{client}/doctor{doctor}")
+    Call<Tab> getTabByLogins(@Path("client") String client,
+                                       @Path("doctor") String doctor);
+
     // добавить таб
     @POST("tab/save")
     Call<Void> addTab(@Body Tab tab);
@@ -88,6 +97,10 @@ public interface PsychogolistAPI {
     // список смс по табу
     @POST("mes/tab{id}")
     Call<List<Message>> getAllMessageByTab(@Path("id") int id);
+
+    // апдейт спс
+    @POST("mes/tab{id}/time{text}")
+    Call<List<Message>> getUpdateMessage(@Path("id") int id, @Path("text") String text);
 
     // добавить смс
     @POST("mes/save/text{text}/sender{sender},full{full_sender}/tab{tab}")
@@ -129,5 +142,17 @@ public interface PsychogolistAPI {
     // список докторов, которые онлайн
     @POST("psychologist/online")
     Call<List<Psychologist>> getAllDoctorWhoIsOnline();
+
+
+
+    /*
+    ФАЙЛЫ
+     */
+
+    @Multipart
+    @POST("psychologist/upload")
+//    Call<String> uploadFile(@Part("description") RequestBody description, @Part("file"; filename="pp.png") RequestBody file);
+    Call<String> uploadFile(@Part("description") RequestBody description,
+                            @Part MultipartBody.Part file);
 
 }

@@ -19,7 +19,7 @@
             android:gravity="center_horizontal"
             android:layout_margin="10dp"
             android:textSize="22sp"
-            android:text="@string/fill_all_fields"/>
+            android:text="@string/registration_new_user"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/loginRegIL"
@@ -49,6 +49,43 @@
                 android:hint="@string/password"/>
         </android.support.design.widget.TextInputLayout>
 
+    <LinearLayout
+        android:id="@+id/container_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_man"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:text="@string/man"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item_menu"/>
+
+        <Button
+            android:id="@+id/btn_woman"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:text="@string/woman"
+            android:layout_height="wrap_content"
+            android:background="@color/background_item_menu" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        android:text="@string/birthday"
+        android:background="@color/background_item_menu"/>
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/nameRegIL"
             android:layout_width="match_parent"
@@ -77,19 +114,6 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/ageRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/ageRegistr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="@string/age"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
             android:id="@+id/countryRegIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,18 +139,144 @@
                 android:hint="@string/city" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/interestRegIL"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/interestRegistr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/interest" />
-        </android.support.design.widget.TextInputLayout>
+            android:text="@string/interest"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"/>
+
+        <CheckBox
+            android:id="@+id/komp1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp1"/>
+        <CheckBox
+            android:id="@+id/komp2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp2" />
+        <CheckBox
+            android:id="@+id/komp3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp3" />
+        <CheckBox
+            android:id="@+id/komp4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp4" />
+        <CheckBox
+            android:id="@+id/komp5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp5" />
+        <CheckBox
+            android:id="@+id/komp6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp6" />
+        <CheckBox
+            android:id="@+id/komp7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp7" />
+        <CheckBox
+            android:id="@+id/komp8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp8" />
+        <CheckBox
+            android:id="@+id/komp9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp9" />
+        <CheckBox
+            android:id="@+id/komp10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp10" />
+        <CheckBox
+            android:id="@+id/komp11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp11"/>
+        <CheckBox
+            android:id="@+id/komp12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp12"/>
+        <CheckBox
+            android:id="@+id/komp13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp13"/>
+        <CheckBox
+            android:id="@+id/komp14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp14"/>
+        <CheckBox
+            android:id="@+id/komp15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp15"/>
+        <CheckBox
+            android:id="@+id/komp16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp16"/>
+        <CheckBox
+            android:id="@+id/komp17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp17"/>
+        <CheckBox
+            android:id="@+id/komp18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp18"/>
+        <CheckBox
+            android:id="@+id/komp19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp19"/>
+        <CheckBox
+            android:id="@+id/komp20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp20"/>
+        <CheckBox
+            android:id="@+id/komp21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp21"/>
+        <CheckBox
+            android:id="@+id/komp22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp22"/>
+        <CheckBox
+            android:id="@+id/komp23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp23"/>
+        <CheckBox
+            android:id="@+id/komp24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp24"/>
+        <CheckBox
+            android:id="@+id/komp25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp25"/>
+        <CheckBox
+            android:id="@+id/komp26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/comp26"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnRegistr"

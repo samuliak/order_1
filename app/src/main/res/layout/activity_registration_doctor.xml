@@ -18,194 +18,333 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:textSize="22sp"
-            android:text="@string/fill_all_fields"/>
+            android:textSize="20sp"
+            android:text="@string/registration_new_doctor"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_margin="10dp">
+
+            <include android:id="@+id/photo" layout="@layout/layout_registr_select_photo"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/nameRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/photo">
+
+                <EditText
+                    android:id="@+id/nameRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/name" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/surnameRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/photo"
+                android:layout_below="@id/nameRegIL">
+                <EditText
+                    android:id="@+id/surnameRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/surname" />
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_man"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:text="@string/man"
+                android:layout_height="wrap_content"
+                android:background="@color/background_item_menu"/>
+
+            <Button
+                android:id="@+id/btn_woman"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:text="@string/woman"
+                android:layout_height="wrap_content"
+                android:background="@color/background_item_menu" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btn_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp"
+                android:text="@string/birthday"
+                android:background="@color/background_item_menu"/>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/countryRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/countryRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/country" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/cityRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/cityRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/city" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/place_of_workRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/place_of_workRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/place_of_work" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/universityRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/universityRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/university" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/specializationRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/specializationRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/specialization" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/direction_of_workRegIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+                <EditText
+                    android:id="@+id/direction_of_workRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/direction_of_work" />
+            </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/loginRegIL"
+            android:id="@+id/experienceyRegIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
-
-            <EditText
-                android:id="@+id/loginRegistr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/nickname" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/passwordRegIL"
+        <EditText
+            android:id="@+id/experienceRegistr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-
-            <EditText
-                android:id="@+id/passwordRegistr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/password"/>
+            android:inputType="date"
+            android:hint="@string/experience"/>
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/nameRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-
-            <EditText
-                android:id="@+id/nameRegistr"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/loginRegIL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/name" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/surnameRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/surnameRegistr"
+                <EditText
+                    android:id="@+id/loginRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/nickname" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/passwordRegIL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/surname" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_margin="5dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/ageRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/ageRegistr"
+                <EditText
+                    android:id="@+id/passwordRegistr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/password"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="@string/age"/>
-        </android.support.design.widget.TextInputLayout>
+                android:text="@string/prof_competence"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/countryRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/countryRegistr"
+            <CheckBox
+                android:id="@+id/komp1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/country" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/cityRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/cityRegistr"
+                android:text="@string/komp1"/>
+            <CheckBox
+                android:id="@+id/komp2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/city" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/interestRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/interestRegistr"
+                android:text="@string/komp2" />
+            <CheckBox
+                android:id="@+id/komp3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/interest" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/prof_interestRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/prof_interestRegistr"
+                android:text="@string/komp3" />
+            <CheckBox
+                android:id="@+id/komp4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/interest" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/place_of_workRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/place_of_workRegistr"
+                android:text="@string/komp4" />
+            <CheckBox
+                android:id="@+id/komp5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/place_of_work" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/universityRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/universityRegistr"
+                android:text="@string/komp5" />
+            <CheckBox
+                android:id="@+id/komp6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/university" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/specializationRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/specializationRegistr"
+                android:text="@string/komp6" />
+            <CheckBox
+                android:id="@+id/komp7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/specialization" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/competenceRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/competenceRegistr"
+                android:text="@string/komp7" />
+            <CheckBox
+                android:id="@+id/komp8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/competences" />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/direction_of_workRegIL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp">
-            <EditText
-                android:id="@+id/direction_of_workRegistr"
+                android:text="@string/komp8" />
+            <CheckBox
+                android:id="@+id/komp9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/direction_of_work" />
-        </android.support.design.widget.TextInputLayout>
+                android:text="@string/komp9" />
+            <CheckBox
+                android:id="@+id/komp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/komp10" />
+            <CheckBox
+                android:id="@+id/komp11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/komp11"/>
+            <CheckBox
+                android:id="@+id/komp12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/komp12"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prof_interest"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"/>
+
+            <CheckBox
+                android:id="@+id/inter1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter1"/>
+            <CheckBox
+                android:id="@+id/inter2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter2" />
+            <CheckBox
+                android:id="@+id/inter3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter3" />
+            <CheckBox
+                android:id="@+id/inter4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter4" />
+            <CheckBox
+                android:id="@+id/inter5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter5" />
+            <CheckBox
+                android:id="@+id/inter6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter6" />
+            <CheckBox
+                android:id="@+id/inter7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter7" />
+            <CheckBox
+                android:id="@+id/inter8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inter8" />
+
+
+        </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnRegistr"
